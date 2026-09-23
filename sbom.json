@@ -1,0 +1,90 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:7c42a912-63b0-4f9e-913a-a19283e74b12",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-17T00:00:00Z",
+    "tools": [
+      {
+        "vendor": "Akshigo Tech",
+        "name": "Akshigo Release Pipeline",
+        "version": "8.0.0-rc.1"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "Akshigo PC Toolkit Pro",
+      "version": "8.0.0-rc.1",
+      "description": "Professional Windows Diagnostic, Optimization, and Repair Suite",
+      "licenses": [
+        {
+          "license": {
+            "name": "Commercial Proprietary",
+            "url": "https://akshigo.tech/eula"
+          }
+        }
+      ],
+      "supplier": {
+        "name": "Akshigo Tech",
+        "url": ["https://akshigo.tech"]
+      }
+    }
+  },
+  "components": [
+    {
+      "type": "framework",
+      "name": "Microsoft.Web.WebView2",
+      "version": "1.0.2592.51",
+      "description": "Microsoft Edge WebView2 Control for WinForms",
+      "licenses": [{ "license": { "id": "Apache-2.0" } }],
+      "purl": "pkg:nuget/Microsoft.Web.WebView2@1.0.2592.51"
+    },
+    {
+      "type": "framework",
+      "name": ".NET Framework",
+      "version": "4.8.1",
+      "description": "Microsoft Windows Core Runtime",
+      "licenses": [{ "license": { "id": "MIT" } }]
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "19.0.0",
+      "description": "User Interface Component Framework",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/react@19.0.0"
+    },
+    {
+      "type": "library",
+      "name": "lucide-react",
+      "version": "0.475.0",
+      "description": "Clean modern icon system",
+      "licenses": [{ "license": { "id": "ISC" } }],
+      "purl": "pkg:npm/lucide-react@0.475.0"
+    },
+    {
+      "type": "library",
+      "name": "express",
+      "version": "5.0.1",
+      "description": "Local HTTP Loopback & Licensing Authority Bridge",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/express@5.0.1"
+    },
+    {
+      "type": "library",
+      "name": "motion",
+      "version": "12.4.7",
+      "description": "Physics animation engine",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/motion@12.4.7"
+    },
+    {
+      "type": "tool",
+      "name": "Inno Setup",
+      "version": "6.3.3",
+      "description": "Windows Installer Generator",
+      "licenses": [{ "license": { "name": "Inno Setup License (Modified BSD)" } }]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+==============================================================================
+AKSHIGO PC TOOLKIT PRO — END USER LICENSE AGREEMENT (EULA)
+==============================================================================
+Version 8.0.0-rc.1 Commercial Release
+
+IMPORTANT: PLEASE READ THIS END USER LICENSE AGREEMENT CAREFULLY BEFORE DOWNLOADING,
+INSTALLING, OR USING AKSHIGO PC TOOLKIT PRO ("THE SOFTWARE"). BY INSTALLING OR USING
+THE SOFTWARE, YOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT.
+
+1. GRANT OF LICENSE
+Akshigo Tech ("Licensor") grants you a non-exclusive, non-transferable,
+revocable subscription-based license to install and use Akshigo PC Toolkit Pro on
+workstations up to the seat limit authorized by your commercial subscription plan.
+
+2. SEAT REGISTRATION & ACTIVATION
+Each installation registers a cryptographic hardware device identity with the Licensor's
+authoritative license verification service. Multi-device licenses permit simultaneous
+activation across your contracted limit (Professional: 2 seats, Technician: 5 seats,
+Enterprise: 25+ seats).
+
+3. OFFLINE OPERATION & GRACE PERIOD
+The Software includes an offline verification cache protected by Windows DPAPI. The
+Software must establish an encrypted HTTPS connection to validate license status at least
+once every 7 days (Professional) or 14 days (Technician/Enterprise).
+
+4. ZERO PRIVACY INTRUSION & TELEMETRY
+All diagnostic and repair operations execute strictly on your local machine. Diagnostic
+telemetry and audit logs remain on your local disk unless you explicitly choose to export
+or transmit reports.
+
+5. RESTRICTIONS
+You may not:
+a) Reverse engineer, decompile, disassemble, or derive the source code of the Software.
+b) Modify or remove any proprietary notices or digital Authenticode signatures.
+c) Sublicense, lease, or distribute activation keys to unauthorized third parties.
+
+6. DISCLAIMER OF WARRANTY & LIMITATION OF LIABILITY
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. LICENSOR SHALL NOT BE
+LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM THE
+USE OR INABILITY TO USE THE SOFTWARE.
+
+Copyright (C) 2026 Akshigo Tech. All Rights Reserved.
+https://akshigo.tech

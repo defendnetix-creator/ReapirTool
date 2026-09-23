@@ -1,0 +1,6 @@
+{
+  "name": "Akshigo PC Toolkit Pro",
+  "description": "Commercial Windows desktop toolkit by Akshigo Tech for diagnostics, repair, system management, and optimization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

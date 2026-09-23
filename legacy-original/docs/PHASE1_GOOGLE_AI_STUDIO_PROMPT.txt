@@ -1,0 +1,154 @@
+You are the senior Windows desktop architect and lead engineer for a commercial product modernization project.
+
+PROJECT: ASHtech PC Toolkit Pro
+
+This repository contains the purchased source code of an existing Windows diagnostic and repair toolkit. It already works and includes C#, PowerShell, batch scripts, HTML/JavaScript dashboard code, configuration/catalog files, build scripts, and Windows repair/diagnostic functionality.
+
+OUR OBJECTIVE
+Transform this existing toolkit into a professional commercial Windows desktop application distributed as an EXE/installer, while preserving its working Windows diagnostics/repair behavior and current architecture wherever practical.
+
+DO NOT rebuild the entire product from zero.
+DO NOT convert it into a web-only application.
+DO NOT remove working features just to modernize the technology.
+DO NOT weaken Windows security controls.
+
+SOURCE-OF-TRUTH INFORMATION
+- C# launcher/build project: tool/UltimateToolkit_Bundle_new/
+- Runtime payload packaged into the final executable: V7/
+- Payload build script: tool/UltimateToolkit_Bundle_new/build_payload.ps1
+- The repository contains duplicated runtime files. The build script currently packages the V7 copies. Verify this yourself before modifying anything.
+
+COMMERCIAL PRODUCT GOALS
+1. New professional UI/UX and ASHtech branding.
+2. Keep the existing working diagnostic and repair engine.
+3. Improve Microsoft Defender/SmartScreen friendliness legitimately.
+4. Add secure subscription licensing.
+5. Continue shipping as a Windows desktop EXE/installer.
+6. Improve maintainability, logging, permissions, validation, and release quality.
+
+TARGET UI
+Create a future UI plan for:
+- Dashboard
+- Diagnostics
+- Repairs
+- Performance
+- Network
+- Software
+- Security
+- AI Assistant
+- Reports
+- Settings
+- Subscription / License
+
+Dashboard should eventually show:
+- PC health score
+- CPU status
+- memory usage
+- disk health
+- battery status
+- network status
+- Windows Update status
+- Microsoft Defender status
+- firewall status
+- recent issues
+- quick actions such as Scan PC, Repair Windows, Optimize, Fix Network, Software Updates, Generate Report
+
+DEFENDER/SMARTSCREEN REQUIREMENT
+The goal is NOT to bypass Defender or SmartScreen.
+Identify implementation patterns that may legitimately trigger security products and propose safer implementations.
+Review specifically for:
+- ExecutionPolicy Bypass
+- encoded PowerShell
+- Base64 command execution
+- Invoke-Expression
+- hidden shell execution
+- download-and-execute flows
+- temporary executable execution
+- Defender exclusion creation
+- Defender disabling
+- SmartScreen disabling
+- firewall disabling
+- UAC bypass behavior
+- unvalidated arbitrary command execution
+- broad localhost listeners
+- wildcard CORS
+- hard-coded credentials/API keys
+- self-extracting/embedded executable chains
+- unnecessary permanent administrator execution
+
+Preserve the business function where possible, but refactor unsafe implementation patterns.
+
+LICENSING TARGET
+We need a commercial subscription layer with:
+- customer license key
+- 1-year subscription
+- activation date
+- expiry date
+- renewal
+- device limit
+- active/revoked/expired states
+- periodic HTTPS validation
+- server-authoritative time/subscription state
+- signed local cached entitlement for temporary offline use
+- renewal reminders at configurable intervals such as 30, 14, 7, and 1 day
+- expired subscription screen
+- device management support
+- secure key/token storage
+
+Do not implement licensing as only a local DateTime comparison. Do not put master secrets in the desktop binary.
+
+PHASE 1 - ANALYSIS ONLY
+Before changing application code:
+1. Inspect the repository structure.
+2. Map the launch/build/runtime flow.
+3. List all major features currently implemented.
+4. Identify duplicated files and which version is actually packaged.
+5. Map C# -> PowerShell -> batch -> HTML/JS -> Windows operations.
+6. Identify all privileged operations.
+7. Identify all external processes/executables.
+8. Identify all localhost/API endpoints.
+9. Identify Defender/SmartScreen risk patterns.
+10. Identify hard-coded secrets or credential handling.
+11. Identify UI/UX limitations.
+12. Identify components that should remain unchanged initially.
+13. Identify components that should be refactored.
+14. Identify components that should be removed only if they are fundamentally unsafe/unnecessary.
+
+CREATE THESE DOCUMENTS
+- docs/current-architecture.md
+- docs/current-feature-inventory.md
+- docs/security-and-defender-audit.md
+- docs/professional-ui-plan.md
+- docs/subscription-licensing-architecture.md
+- docs/modernization-roadmap.md
+
+MODERNIZATION ROADMAP MUST USE INCREMENTAL PHASES
+Recommended concept:
+Phase A - establish clean baseline and reproducible build
+Phase B - professional UI shell
+Phase C - connect existing functions to the new UI without changing behavior
+Phase D - Defender/security hardening
+Phase E - subscription/license client
+Phase F - licensing backend contract/API design
+Phase G - installer/update/signing design
+Phase H - QA/regression testing
+Phase I - commercial release
+
+IMPORTANT
+Do not make broad source-code changes yet.
+Do not fabricate tests.
+Do not mark something safe merely because it currently works.
+Do not replace working repair logic unnecessarily.
+Do not attempt to evade endpoint security.
+
+At the end, print:
+1. CURRENT ARCHITECTURE SUMMARY
+2. WHAT SHOULD BE REUSED
+3. WHAT SHOULD BE REBUILT
+4. DEFENDER/SMARTSCREEN RISKS
+5. UI MODERNIZATION PLAN
+6. LICENSING ARCHITECTURE
+7. FIRST 10 IMPLEMENTATION TASKS
+8. RISKS BEFORE DEVELOPMENT
+
+Then STOP and wait for approval before implementation.

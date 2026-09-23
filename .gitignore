@@ -1,0 +1,57 @@
+# Dependencies & Package Managers
+node_modules/
+.pnp
+.pnp.js
+
+# Build Outputs & Generated Artifacts
+build/
+dist/
+out/
+coverage/
+*.tsbuildinfo
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Certificates, Keys & Credentials
+*.pfx
+*.p12
+*.pem
+*.key
+*.cer
+*.crt
+*.cert
+*.secret
+credentials.json
+token.json
+signing/*.pfx
+signing/*.key
+
+# Third-Party & Unsafe Binaries / Installers
+*.exe
+*.dll
+*.sys
+*.msi
+*.msix
+*.zip
+*.7z
+*.rar
+*.iso
+*.img
+*.vhd
+*.vhdx
+
+# OS & IDE Caches
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
