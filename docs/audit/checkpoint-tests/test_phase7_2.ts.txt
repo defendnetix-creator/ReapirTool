@@ -1,0 +1,43 @@
+================================================================
+ AKSHIGO TECH WEBSITE — PHASE 7.2 RAZORPAY CHECKOUT TEST SUITE
+ Target: Website Pricing Page -> Razorpay Standard Checkout -> License Engine
+================================================================
+
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: License Display User (license.disp@akshigo.tech) | Order: ord_int_lic_1790435830344 | Status: SENT | MsgId: msg_1790435830386_7f0f41ba6504 | Attempts: 1
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: DoubleClick Tester (doubleclick@akshigo.tech) | Order: ord_int_dbl_1790435830387 | Status: SENT | MsgId: msg_1790435830388_1fa708466c36 | Attempts: 1
+----------------------------------------------------------------
+ TEST RESULTS SUMMARY
+----------------------------------------------------------------
+[ 1] Personal checkout opens                              -> [32mPASS[0m
+     Generated Personal tier order ord_int_pers_1790435830343 for ₹2,999 (299900 paise)
+[ 2] Professional checkout opens                          -> [32mPASS[0m
+     Generated Professional tier order ord_int_prof_1790435830343 for ₹5,999 (599900 paise)
+[ 3] Technician checkout opens                            -> [32mPASS[0m
+     Generated Technician tier order ord_int_tech_1790435830343 for ₹14,999 (1499900 paise)
+[ 4] Business checkout opens                              -> [32mPASS[0m
+     Generated Business tier order ord_int_biz_1790435830343 for ₹39,999 (3999900 paise)
+[ 5] Server price used                                    -> [32mPASS[0m
+     Server pricing table strictly governs all checkouts (₹2,999 / ₹5,999 / ₹14,999 / ₹39,999)
+[ 6] Successful TEST payment                              -> [32mPASS[0m
+     Generated standard Razorpay checkout response (Order: order_test_1790435830343, Payment: pay_test_1790435830343)
+[ 7] Backend verification succeeds                        -> [32mPASS[0m
+     Cryptographic HMAC-SHA256 signature verified and order pay_rec_1790435830344_kk4kfd marked as PAID
+[ 8] AKSG license displayed                               -> [32mPASS[0m
+     Generated authentic license key AKSG-PRO-JZBY-SMWH-2K93 for success screen display
+[ 9] Failed payment shows failure state                   -> [32mPASS[0m
+     Invalid signature caught, payment marked FAILED, preventing unverified license allocation
+[10] Cancelled checkout returns safely                    -> [32mPASS[0m
+     Dismissed checkout preserves order in CREATED state without creating subscription or license seats
+[11] Double-click does not create duplicate fulfillment   -> [32mPASS[0m
+     Idempotency guaranteed: identical subscription sub_prof_b0x3h6 returned on duplicate invocation
+----------------------------------------------------------------
+[32m✓ ALL 11 PHASE 7.2 RAZORPAY WEBSITE CHECKOUT SCENARIOS PASSED.[0m
+✔ scripts\test_phase7_2.ts (568.3797ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 585.3397

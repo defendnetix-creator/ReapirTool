@@ -54,6 +54,7 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
   const [isLoadingLogs, setIsLoadingLogs] = useState<boolean>(false);
   const [customFileScanPath, setCustomFileScanPath] = useState<string>('C:\\Windows\\System32\\kernel32.dll');
   const [customWimPath, setCustomWimPath] = useState<string>('D:\\sources\\install.wim');
+  const [customWimIndex, setCustomWimIndex] = useState<string>('');
   const [restorePointName, setRestorePointName] = useState<string>('Akshigo Manual Checkpoint');
   const [restorePointsList, setRestorePointsList] = useState<any[] | null>(null);
   const [isLoadingRestorePoints, setIsLoadingRestorePoints] = useState<boolean>(false);
@@ -178,12 +179,12 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
       title: 'DISM Repair from ISO/WIM Source',
       category: 'Windows Repairs',
       description:
-        'Repairs the Component Store offline using a local mounted Windows ISO install.wim/install.esd without cloud access.',
+        'Repairs the running Windows component store using a local install.wim/install.esd image and its selected index, without cloud access.',
       estimatedDuration: '5-10 mins',
       requiresAdmin: true,
       requiresRestart: false,
       isLongRunning: true,
-      actionCommand: `Dism.exe /Online /Cleanup-Image /RestoreHealth /Source:${customWimPath} /LimitAccess`,
+      actionCommand: `Dism.exe /Online /Cleanup-Image /RestoreHealth /Source:${customWimPath.toLowerCase().endsWith('.esd') ? 'esd' : 'wim'}:${customWimPath}:${customWimIndex || '<index>'} /LimitAccess`,
       icon: 'Layers',
       details: [
         `Source: ${customWimPath}`,
@@ -194,20 +195,20 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
     {
       id: 'dism-clean-store',
       operationId: 'repair.dism.clean_store',
-      title: 'DISM Component Store Cleanup (ResetBase)',
+      title: 'DISM Component Store Cleanup',
       category: 'Windows Repairs',
       description:
-        'Purges superseded component packages and resets the base in WinSxS to reclaim several gigabytes of disk space.',
+        'Removes superseded component packages using StartComponentCleanup.',
       estimatedDuration: '3-6 mins',
       requiresAdmin: true,
       requiresRestart: false,
       isLongRunning: true,
-      actionCommand: 'Dism.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase',
+      actionCommand: 'Dism.exe /Online /Cleanup-Image /StartComponentCleanup',
       icon: 'HardDrive',
       details: [
         'Removes superseded service pack updates',
-        'Executes StartComponentCleanup /ResetBase',
-        'Safely reclaims 2-8 GB of SSD storage'
+        'Executes StartComponentCleanup',
+        'Space recovered depends on the installed updates'
       ]
     },
     {
@@ -216,17 +217,17 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
       title: 'Full SFC + DISM Autonomous Super Repair',
       category: 'Windows Repairs',
       description:
-        'Complete automated repair pipeline: Executes DISM RestoreHealth first, followed by SFC /scannow, and finalizes with Component Store Cleanup.',
+        'Runs SFC /scannow followed by DISM RestoreHealth, preserving the original Full SFC + DISM sequence.',
       estimatedDuration: '8-18 mins',
       requiresAdmin: true,
       requiresRestart: false,
       isLongRunning: true,
-      actionCommand: 'OneClickSuperRepair.ps1 -FullPipeline',
+      actionCommand: 'sfc /scannow then Dism.exe /Online /Cleanup-Image /RestoreHealth',
       icon: 'Zap',
       details: [
-        'Step 1: DISM RestoreHealth servicing repair',
-        'Step 2: SFC /scannow protected file validation',
-        'Step 3: Component Store optimization cleanup'
+        'Step 1: SFC /scannow protected file validation',
+        'Step 2: DISM RestoreHealth servicing repair',
+        'Stops and reports failures before continuing'
       ]
     },
 
@@ -711,11 +712,8 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
   const handleFetchRestorePoints = async () => {
     setIsLoadingRestorePoints(true);
     try {
-      const res = await operationsClient.executeOperation('repair.recovery.list_restore_points', {}, false);
-      const job = await operationsClient.getJob(res.jobId);
-      if (job.result?.restorePoints) {
-        setRestorePointsList(job.result.restorePoints);
-      }
+      const res = await operationsClient.getRestorePoints();
+      setRestorePointsList(res.restorePoints || []);
     } catch (err) {
       console.error('Failed to query restore points:', err);
     } finally {
@@ -729,6 +727,7 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
       params.filePath = customFileScanPath;
     } else if (item.operationId === 'repair.dism.source_wim') {
       params.sourcePath = customWimPath;
+      params.sourceIndex = Number(customWimIndex);
     } else if (item.operationId === 'repair.recovery.create_restore_point') {
       params.description = restorePointName;
     }
@@ -863,6 +862,10 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
               onChange={(e) => setCustomWimPath(e.target.value)}
               className="bg-[#05070c] border border-white/[0.08] rounded px-2 py-1 text-[11px] text-cyan-300 w-52 focus:outline-none focus:border-cyan-500"
             />
+            <label className="text-slate-500 text-[11px]">Image index:</label>
+            <input aria-label="WIM or ESD image index" type="number" min="1" step="1" value={customWimIndex}
+              onChange={(e) => setCustomWimIndex(e.target.value)}
+              className="bg-[#05070c] border border-white/[0.08] rounded px-2 py-1 text-[11px] text-cyan-300 w-16" />
           </div>
 
           <div className="flex items-center gap-2">

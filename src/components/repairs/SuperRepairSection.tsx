@@ -129,7 +129,7 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
                   AUTONOMOUS 7-STAGE PC HEALING ENGINE
                 </span>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-500/30 font-bold">
-                  RESTORE POINT GUARANTEED
+                  UNAVAILABLE — PARITY AUDIT PENDING
                 </span>
               </div>
             </div>

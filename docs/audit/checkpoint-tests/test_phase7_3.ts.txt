@@ -1,0 +1,47 @@
+================================================================
+ AKSHIGO PC TOOLKIT PRO — PHASE 7.3 TRANSACTIONAL EMAIL TEST SUITE
+ Scope: Verified Payment -> Fulfillment -> Idempotent Email Delivery
+================================================================
+
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: Alice Developer (newuser@example.com) | Order: ord_int_m1_1790435831087 | Status: SENT | MsgId: msg_1790435831124_44f1d151609a | Attempts: 1
+[EmailService] Transactional Email Dispatched | Type: RENEWAL_CONFIRMATION | Customer: Bob Administrator (renew.user@example.com) | Order: ord_int_m2_1790435831189 | Status: SENT | MsgId: msg_1790435831191_42d25e0df50a | Attempts: 1
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: Webhook Idem (webhook.idem@example.com) | Order: ord_int_m5_1790435831372 | Status: SENT | MsgId: msg_1790435831374_19247224e31c | Attempts: 1
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: Verify Idem User (verify.idem@example.com) | Order: ord_int_m6_1790435831488 | Status: SENT | MsgId: msg_1790435831489_af5ffb788be6 | Attempts: 1
+[EmailService] Email Delivery FAILED | Type: PURCHASE_CONFIRMATION | Order: ord_int_m7_1790435831605 | Reason: Simulated upstream SMTP / Transactional Email Provider network timeout | Attempts: 1
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: Resilience Tester (resilient@example.com) | Order: ord_int_m7_1790435831605 | Status: SENT | MsgId: msg_1790435831670_62ce5b03040d | Attempts: 2
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: Sam Technician (tech.plan@example.com) | Order: ord_int_m9_1790435831670 | Status: SENT | MsgId: msg_1790435831671_25f19d0bf5a3 | Attempts: 1
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: Security Officer (security@example.com) | Order: ord_int_m10_1790435831735 | Status: SENT | MsgId: msg_1790435831736_46c82267a5c4 | Attempts: 1
+----------------------------------------------------------------
+ TEST RESULTS SUMMARY
+----------------------------------------------------------------
+[ 1] successful new purchase sends email                  -> [32mPASS[0m
+     Dispatched PURCHASE_CONFIRMATION email with subject "Your Akshigo PC Toolkit Pro subscription is active" to newuser@example.com
+[ 2] renewal sends renewal email                          -> [32mPASS[0m
+     Dispatched RENEWAL_CONFIRMATION email with subject "Your Akshigo PC Toolkit Pro subscription has been renewed" without generating duplicate license keys
+[ 3] failed payment sends no activation email             -> [32mPASS[0m
+     Confirmed 0 emails created for failed order payment
+[ 4] invalid signature sends no email                     -> [32mPASS[0m
+     Signature verification failed; fulfillment was prevented and zero emails were generated
+[ 5] duplicate webhook sends one email only               -> [32mPASS[0m
+     Webhook idempotency prevented duplicate email dispatch across repeated event arrivals
+[ 6] duplicate verify request sends one email only        -> [32mPASS[0m
+     Fulfillment & email service idempotency checks prevented duplicate customer notifications
+[ 7] email failure does not remove license                -> [32mPASS[0m
+     License lic_busi_yefwi4 remains fully ACTIVE even though email delivery encountered provider failure
+[ 8] retry successfully delivers failed email             -> [32mPASS[0m
+     Successfully retried failed email (attempt 2) and transitioned delivery status to SENT (MsgId: msg_1790435831670_62ce5b03040d)
+[ 9] email contains correct plan/expiry                   -> [32mPASS[0m
+     Verified email payload contains accurate plan (Technician Toolkit (5 Portable Seats)), 5 PC Seats, and 365-day expiry
+[10] full license key is not exposed in logs/email        -> [32mPASS[0m
+     License securely masked as "AKSG-PRO-••••-••••-7VBT". Raw license secret segments strictly omitted from email templates and subjects.
+----------------------------------------------------------------
+[32m✓ ALL 10 PHASE 7.3 TRANSACTIONAL EMAIL SCENARIOS PASSED.[0m
+✔ scripts\test_phase7_3.ts (1210.0673ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1228.215

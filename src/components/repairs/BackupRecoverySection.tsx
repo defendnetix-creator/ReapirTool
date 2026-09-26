@@ -38,6 +38,7 @@ export const BackupRecoverySection: React.FC<BackupRecoverySectionProps> = ({
   const [winReStatus, setWinReStatus] = useState<any | null>(null);
   const [gpResult, setGpResult] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [dataWarnings, setDataWarnings] = useState<string[]>([]);
 
   // Form inputs
   const [newRpDescription, setNewRpDescription] = useState<string>('Akshigo Manual Checkpoint');
@@ -59,16 +60,19 @@ export const BackupRecoverySection: React.FC<BackupRecoverySectionProps> = ({
   const loadData = async () => {
     setIsLoading(true);
     try {
-      const [rpRes, histRes, winreRes, gpRes] = await Promise.all([
+      const results = await Promise.allSettled([
         operationsClient.getRestorePoints(),
         operationsClient.getBackupHistory(),
         operationsClient.getWinReStatus(),
         operationsClient.getGPResult()
       ]);
-      setRestorePoints(rpRes.restorePoints || []);
-      setBackupHistory(histRes.history || []);
-      setWinReStatus(winreRes);
-      setGpResult(gpRes);
+      const [rpRes, histRes, winreRes, gpRes] = results;
+      setRestorePoints(rpRes.status === 'fulfilled' ? rpRes.value.restorePoints || [] : []);
+      setBackupHistory(histRes.status === 'fulfilled' ? histRes.value.history || [] : []);
+      setWinReStatus(winreRes.status === 'fulfilled' ? winreRes.value : null);
+      setGpResult(gpRes.status === 'fulfilled' ? gpRes.value : null);
+      const labels = ['Restore points', 'Backup history', 'Windows recovery', 'Group policy'];
+      setDataWarnings(results.flatMap((result, i) => result.status === 'rejected' ? [`${labels[i]} unavailable: ${result.reason?.message || 'Windows query failed'}`] : []));
     } catch (err) {
       console.error('Failed to load backup telemetry:', err);
     } finally {
@@ -153,6 +157,7 @@ export const BackupRecoverySection: React.FC<BackupRecoverySectionProps> = ({
 
   return (
     <div className="space-y-6">
+      {dataWarnings.length > 0 && <div role="status" className="text-xs text-amber-200 bg-amber-950/40 rounded p-3">{dataWarnings.join(' · ')}</div>}
       {/* Header and Sub-tabs */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>

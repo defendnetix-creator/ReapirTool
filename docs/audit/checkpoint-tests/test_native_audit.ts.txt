@@ -1,0 +1,17 @@
+✔ legacy SFC/DISM order and ordinary cleanup are preserved (2.2568ms)
+✔ source repair requires explicit image index, preserves spaces, blocks option injection (0.8709ms)
+✔ real output/exit codes determine result; failures stop later commands (0.986ms)
+✔ unimplemented repair never creates a successful simulated job (0.3751ms)
+✔ network targets cannot introduce options or commands; disk inspection stays read-only (8.7541ms)
+✔ service control protects security/core services and validates startup parameters (0.8861ms)
+✔ restore point descriptions are passed as data; creation is not assumed from process success (0.6613ms)
+✔ loopback rejects Host spoofing, cross-origin access and remote sockets (0.4024ms)
+✔ API rejects old tokens, guards session bootstrap and blocks fake data (388.0609ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5655.8898

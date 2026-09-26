@@ -1,0 +1,42 @@
+===============================================================
+AKSHIGO PC TOOLKIT PRO - PHASE 8.5 VERIFICATION TEST SUITE
+===============================================================
+
+[TEST 1] PASS: Office Installation & Licensing Detection — Installed: true, Suite: Microsoft 365 Apps for enterprise, Apps: 7, Status: LICENSED
+[TEST 2] FAIL: Outlook Safe Mode, Profile & NavPane Operations — NOT_IMPLEMENTED: office.outlook.resetnavpane has no verified native implementation.
+[TEST 3] PASS: SCANPST / Inbox Repair Tool Detection — ScanPST installed flag: true, Path: C:\Program Files\Microsoft Office\root\Office16\SCANPST.EXE
+[TEST 4] FAIL: Office C2R Quick & Online Repair Launchers — NOT_IMPLEMENTED: office.repair.quick has no verified native implementation.
+[TEST 5] FAIL: OneDrive Reset & Teams Cache Cleanup — NOT_IMPLEMENTED: office.onedrive.reset has no verified native implementation.
+[TEST 6] PASS: RDP Status Inquiry (Port, NLA, Service) — Enabled: true, Port: 3389, NLA: true, Service: Running
+[TEST 7] FAIL: RDP Firewall Rule Audit — NOT_IMPLEMENTED: remote.firewall.rdp_audit has no verified native implementation.
+[TEST 8] FAIL: RDP Settings Toggle Safety & Admin Check — NOT_IMPLEMENTED: remote.rdp.toggle has no verified native implementation.
+[TEST 9] PASS: VPN Adapters & Proxy Configuration — VPN Adapters detected: 1, Proxy enabled: false
+[TEST 10] PASS: SMB Network Shares & Mapped Drives Inventory — SMB Shares: 4 (including ADMIN$), Mapped Drives: 2
+[TEST 11] FAIL: NAS Connectivity & NetBIOS Diagnostic Testing — NOT_IMPLEMENTED: remote.nas.test has no verified native implementation.
+[TEST 12] PASS: BIOS / UEFI Firmware Architecture & Secure Boot — Firmware: American Megatrends Inc., UEFI: true, Secure Boot: true
+[TEST 13] PASS: TPM 2.0 Security Module State Verification — TPM Present: true, Version: 2.0, Manufacturer: INTC (Intel PTT)
+[TEST 14] FAIL: BCD Inventory & Backup Operation — NOT_IMPLEMENTED: boot.bcd.backup has no verified native implementation.
+[TEST 15] FAIL: WinRE Status & ReAgentC Enable Operation — NOT_IMPLEMENTED: boot.reagentc.enable has no verified native implementation.
+[TEST 16] FAIL: bootrec Scan and Rebuild with Confirmation — NOT_IMPLEMENTED: boot.bootrec.scan has no verified native implementation.
+[TEST 17] FAIL: Group Policy Diagnostics & Force Update — NOT_IMPLEMENTED: policy.gpupdate.force has no verified native implementation.
+[TEST 18] FAIL: X-Toolkit-Auth Enforcement & Operations Catalog — 401 on missing token: false, 200 with token: false, Catalog contains Phase 8.5 ops: false
+
+===============================================================
+TEST SUMMARY: 7 / 18 PASSED
+===============================================================
+Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\win\async.c, line 94
+✖ scripts\test_phase8_5.ts (1186.0317ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1204.9917
+
+✖ failing tests:
+
+test at scripts\test_phase8_5.ts:1:1
+✖ scripts\test_phase8_5.ts (1186.0317ms)
+  'test failed'

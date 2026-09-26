@@ -1,0 +1,9 @@
+{
+  "operations": 196,
+  "nativeCommandPlans": 36,
+  "missingNativeOperations": 160,
+  "declaredFeatures": 158,
+  "indexedLegacyLabels": 649,
+  "preservedLegacyFiles": 136,
+  "releaseReady": false
+}

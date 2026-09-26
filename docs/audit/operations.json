@@ -1,0 +1,1178 @@
+[
+  {
+    "id": "repair.sfc.scannow",
+    "baselineEvidence": "server/operations/handlers/repair.ts:42",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.sfc.verifyonly",
+    "baselineEvidence": "server/operations/handlers/repair.ts:62",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.sfc.scanfile",
+    "baselineEvidence": "server/operations/handlers/repair.ts:71",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.dism.checkhealth",
+    "baselineEvidence": "server/operations/handlers/repair.ts:79",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.dism.scanhealth",
+    "baselineEvidence": "server/operations/handlers/repair.ts:86",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.dism.restorehealth",
+    "baselineEvidence": "server/operations/handlers/repair.ts:95",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.dism.source_wim",
+    "baselineEvidence": "server/operations/handlers/repair.ts:108",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.dism.clean_store",
+    "baselineEvidence": "server/operations/handlers/repair.ts:118",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.sfc_dism.full",
+    "baselineEvidence": "server/operations/handlers/repair.ts:127",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.cbs_log.view",
+    "baselineEvidence": "server/operations/handlers/repair.ts:142",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.wu.reset_services",
+    "baselineEvidence": "server/operations/handlers/repair.ts:158",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.wu.softwaredist_reset",
+    "baselineEvidence": "server/operations/handlers/repair.ts:169",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.wu.catroot2_reset",
+    "baselineEvidence": "server/operations/handlers/repair.ts:180",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.wu.diagnostics",
+    "baselineEvidence": "server/operations/handlers/repair.ts:189",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.wu.status",
+    "baselineEvidence": "server/operations/handlers/repair.ts:203",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.explorer.restart",
+    "baselineEvidence": "server/operations/handlers/repair.ts:213",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.startmenu.troubleshoot",
+    "baselineEvidence": "server/operations/handlers/repair.ts:222",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.store.wsreset",
+    "baselineEvidence": "server/operations/handlers/repair.ts:231",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.store.reregister",
+    "baselineEvidence": "server/operations/handlers/repair.ts:238",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.msi.repair",
+    "baselineEvidence": "server/operations/handlers/repair.ts:247",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.service.spooler_wuauserv",
+    "baselineEvidence": "server/operations/handlers/repair.ts:254",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.time.sync",
+    "baselineEvidence": "server/operations/handlers/repair.ts:261",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.recovery.create_restore_point",
+    "baselineEvidence": "server/operations/handlers/repair.ts:270",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.recovery.list_restore_points",
+    "baselineEvidence": "server/operations/handlers/repair.ts:288",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "repair.recovery.open_options",
+    "baselineEvidence": "server/operations/handlers/repair.ts:293",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "network.dns.flush",
+    "baselineEvidence": "server/operations/handlers/network.ts:75",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.ip.renew",
+    "baselineEvidence": "server/operations/handlers/network.ts:84",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.ip.release",
+    "baselineEvidence": "server/operations/handlers/network.ts:93",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.winsock.reset",
+    "baselineEvidence": "server/operations/handlers/network.ts:100",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.tcpip.reset",
+    "baselineEvidence": "server/operations/handlers/network.ts:109",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.adapters.restart",
+    "baselineEvidence": "server/operations/handlers/network.ts:118",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "network.proxy.status",
+    "baselineEvidence": "server/operations/handlers/network.ts:128",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.proxy.reset",
+    "baselineEvidence": "server/operations/handlers/network.ts:133",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.connectivity.test",
+    "baselineEvidence": "server/operations/handlers/network.ts:142",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "network.ping.test",
+    "baselineEvidence": "server/operations/handlers/network.ts:178",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.dns.lookup",
+    "baselineEvidence": "server/operations/handlers/network.ts:194",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.traceroute",
+    "baselineEvidence": "server/operations/handlers/network.ts:203",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "network.apipa.detect",
+    "baselineEvidence": "server/operations/handlers/network.ts:223",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "network.workflow.common_repair",
+    "baselineEvidence": "server/operations/handlers/network.ts:231",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "network.netstat.sockets",
+    "baselineEvidence": "server/operations/handlers/network.ts:246",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "printer.inventory.get",
+    "baselineEvidence": "server/operations/handlers/printer.ts:77",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.spooler.restart",
+    "baselineEvidence": "server/operations/handlers/printer.ts:82",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.spooler.stop",
+    "baselineEvidence": "server/operations/handlers/printer.ts:99",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.spooler.start",
+    "baselineEvidence": "server/operations/handlers/printer.ts:107",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.queue.purge",
+    "baselineEvidence": "server/operations/handlers/printer.ts:115",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.diagnostics.run",
+    "baselineEvidence": "server/operations/handlers/printer.ts:130",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.offline.fix",
+    "baselineEvidence": "server/operations/handlers/printer.ts:147",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.sharing.diagnose",
+    "baselineEvidence": "server/operations/handlers/printer.ts:161",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.rpc_smb.check",
+    "baselineEvidence": "server/operations/handlers/printer.ts:174",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.fix_0x0000011b",
+    "baselineEvidence": "server/operations/handlers/printer.ts:181",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.fix_0x00000709",
+    "baselineEvidence": "server/operations/handlers/printer.ts:198",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.drivers.list",
+    "baselineEvidence": "server/operations/handlers/printer.ts:211",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "printer.subsystem.cleanup",
+    "baselineEvidence": "server/operations/handlers/printer.ts:222",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "hardware.system.info",
+    "baselineEvidence": "server/operations/handlers/hardware.ts:143",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "hardware.devices.problematic",
+    "baselineEvidence": "server/operations/handlers/hardware.ts:159",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "hardware.battery.health",
+    "baselineEvidence": "server/operations/handlers/hardware.ts:178",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "hardware.battery.report",
+    "baselineEvidence": "server/operations/handlers/hardware.ts:194",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "hardware.thermal.info",
+    "baselineEvidence": "server/operations/handlers/hardware.ts:215",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "driver.list",
+    "baselineEvidence": "server/operations/handlers/driver.ts:198",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "driver.problematic",
+    "baselineEvidence": "server/operations/handlers/driver.ts:218",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "driver.backup",
+    "baselineEvidence": "server/operations/handlers/driver.ts:235",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "driver.restore",
+    "baselineEvidence": "server/operations/handlers/driver.ts:280",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "driver.install.inf",
+    "baselineEvidence": "server/operations/handlers/driver.ts:319",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "driver.pnputil.enum",
+    "baselineEvidence": "server/operations/handlers/driver.ts:357",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "driver.wu.scan",
+    "baselineEvidence": "server/operations/handlers/driver.ts:374",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "driver.report",
+    "baselineEvidence": "server/operations/handlers/driver.ts:397",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "storage.disks",
+    "baselineEvidence": "server/operations/handlers/storage.ts:137",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "storage.smart",
+    "baselineEvidence": "server/operations/handlers/storage.ts:156",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "storage.volumes",
+    "baselineEvidence": "server/operations/handlers/storage.ts:175",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "storage.chkdsk.scan",
+    "baselineEvidence": "server/operations/handlers/storage.ts:194",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "storage.chkdsk.repair",
+    "baselineEvidence": "server/operations/handlers/storage.ts:226",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "storage.optimize.status",
+    "baselineEvidence": "server/operations/handlers/storage.ts:256",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "storage.benchmark",
+    "baselineEvidence": "server/operations/handlers/storage.ts:280",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "storage.cleanup.analyze",
+    "baselineEvidence": "server/operations/handlers/storage.ts:310",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "reports.system_inventory.generate",
+    "baselineEvidence": "server/operations/handlers/reports.ts:103",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "reports.battery.generate",
+    "baselineEvidence": "server/operations/handlers/reports.ts:137",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "reports.driver.generate",
+    "baselineEvidence": "server/operations/handlers/reports.ts:167",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "reports.storage.generate",
+    "baselineEvidence": "server/operations/handlers/reports.ts:198",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.restore_point.create",
+    "baselineEvidence": "server/operations/handlers/backup.ts:107",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "backup.restore_points.list",
+    "baselineEvidence": "server/operations/handlers/backup.ts:148",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "backup.system_restore.launch",
+    "baselineEvidence": "server/operations/handlers/backup.ts:176",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.files.create",
+    "baselineEvidence": "server/operations/handlers/backup.ts:187",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.files.restore",
+    "baselineEvidence": "server/operations/handlers/backup.ts:228",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.registry.export",
+    "baselineEvidence": "server/operations/handlers/backup.ts:254",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.registry.restore",
+    "baselineEvidence": "server/operations/handlers/backup.ts:289",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.recovery_options.launch",
+    "baselineEvidence": "server/operations/handlers/backup.ts:313",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.winre.status",
+    "baselineEvidence": "server/operations/handlers/backup.ts:323",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.system_image.launch",
+    "baselineEvidence": "server/operations/handlers/backup.ts:331",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.vss.manage",
+    "baselineEvidence": "server/operations/handlers/backup.ts:157",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "backup.history.list",
+    "baselineEvidence": "server/operations/handlers/backup.ts:341",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "services.inventory.list",
+    "baselineEvidence": "server/operations/handlers/services.ts:300",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "services.critical.detect",
+    "baselineEvidence": "server/operations/handlers/services.ts:310",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "services.start",
+    "baselineEvidence": "server/operations/handlers/services.ts:327",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "services.stop",
+    "baselineEvidence": "server/operations/handlers/services.ts:348",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "services.restart",
+    "baselineEvidence": "server/operations/handlers/services.ts:374",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "services.startup_type.set",
+    "baselineEvidence": "server/operations/handlers/services.ts:397",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "services.optional_features.dism",
+    "baselineEvidence": "server/operations/handlers/services.ts:423",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "services.optional_features.launch",
+    "baselineEvidence": "server/operations/handlers/services.ts:433",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "services.hyperv.status",
+    "baselineEvidence": "server/operations/handlers/services.ts:443",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "services.wsl.status",
+    "baselineEvidence": "server/operations/handlers/services.ts:451",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "services.dotnet.status",
+    "baselineEvidence": "server/operations/handlers/services.ts:459",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "logs.eventlog.query",
+    "baselineEvidence": "server/operations/handlers/eventlogs.ts:209",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "logs.eventlog.issues",
+    "baselineEvidence": "server/operations/handlers/eventlogs.ts:233",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "logs.eventlog.export",
+    "baselineEvidence": "server/operations/handlers/eventlogs.ts:245",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "logs.eventviewer.launch",
+    "baselineEvidence": "server/operations/handlers/eventlogs.ts:266",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "reports.event_log.generate",
+    "baselineEvidence": "server/operations/handlers/eventlogs.ts:276",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.process.list",
+    "baselineEvidence": "server/operations/handlers/system.ts:231",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "sys.process.terminate",
+    "baselineEvidence": "server/operations/handlers/system.ts:241",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.startup.list",
+    "baselineEvidence": "server/operations/handlers/system.ts:277",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.startup.toggle",
+    "baselineEvidence": "server/operations/handlers/system.ts:287",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.tasks.list",
+    "baselineEvidence": "server/operations/handlers/system.ts:309",
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
+  },
+  {
+    "id": "sys.admin.env_vars",
+    "baselineEvidence": "server/operations/handlers/system.ts:319",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.sysdm_cpl",
+    "baselineEvidence": "server/operations/handlers/system.ts:327",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.msinfo32",
+    "baselineEvidence": "server/operations/handlers/system.ts:334",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.compmgmt",
+    "baselineEvidence": "server/operations/handlers/system.ts:340",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.taskmgr",
+    "baselineEvidence": "server/operations/handlers/system.ts:346",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.services_msc",
+    "baselineEvidence": "server/operations/handlers/system.ts:352",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.msconfig.launch",
+    "baselineEvidence": "server/operations/handlers/system.ts:358",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.regedit",
+    "baselineEvidence": "server/operations/handlers/system.ts:364",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.sched_tasks",
+    "baselineEvidence": "server/operations/handlers/system.ts:370",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.godmode",
+    "baselineEvidence": "server/operations/handlers/system.ts:424",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "user.accounts.list",
+    "baselineEvidence": "server/operations/handlers/accounts.ts:124",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "user.admin_account.enable",
+    "baselineEvidence": "server/operations/handlers/accounts.ts:139",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "user.account_settings.launch",
+    "baselineEvidence": "server/operations/handlers/accounts.ts:166",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "user.netplwiz.launch",
+    "baselineEvidence": "server/operations/handlers/accounts.ts:175",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "user.lusrmgr.console",
+    "baselineEvidence": "server/operations/handlers/accounts.ts:184",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "policy.gpupdate.force",
+    "baselineEvidence": "server/operations/handlers/policy.ts:90",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "policy.gpresult.run",
+    "baselineEvidence": "server/operations/handlers/policy.ts:104",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "policy.gpedit.launch",
+    "baselineEvidence": "server/operations/handlers/policy.ts:119",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "policy.report.generate",
+    "baselineEvidence": "server/operations/handlers/policy.ts:147",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "policy.secpol.launch",
+    "baselineEvidence": "server/operations/handlers/policy.ts:128",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "policy.wu.diagnose",
+    "baselineEvidence": "server/operations/handlers/policy.ts:137",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.outlook.safemode",
+    "baselineEvidence": "server/operations/handlers/office.ts:78",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.outlook.profiles",
+    "baselineEvidence": "server/operations/handlers/office.ts:91",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.outlook.resetnavpane",
+    "baselineEvidence": "server/operations/handlers/office.ts:102",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.outlook.scanpst",
+    "baselineEvidence": "server/operations/handlers/office.ts:115",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.repair.quick",
+    "baselineEvidence": "server/operations/handlers/office.ts:129",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.repair.online",
+    "baselineEvidence": "server/operations/handlers/office.ts:142",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.onedrive.reset",
+    "baselineEvidence": "server/operations/handlers/office.ts:155",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.teams.cleancache",
+    "baselineEvidence": "server/operations/handlers/office.ts:171",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "office.zoom.cleancache",
+    "baselineEvidence": "server/operations/handlers/office.ts:185",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "remote.rdp.settings",
+    "baselineEvidence": "server/operations/handlers/remote.ts:131",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "remote.rdp.toggle",
+    "baselineEvidence": "server/operations/handlers/remote.ts:142",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "remote.rdp.restart_service",
+    "baselineEvidence": "server/operations/handlers/remote.ts:160",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "remote.firewall.rdp_audit",
+    "baselineEvidence": "server/operations/handlers/remote.ts:177",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "remote.nas.test",
+    "baselineEvidence": "server/operations/handlers/remote.ts:191",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "remote.shares.audit",
+    "baselineEvidence": "server/operations/handlers/remote.ts:212",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "boot.recovery.launch",
+    "baselineEvidence": "server/operations/handlers/boot.ts:56",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "boot.advanced.startup",
+    "baselineEvidence": "server/operations/handlers/boot.ts:67",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "boot.bcd.backup",
+    "baselineEvidence": "server/operations/handlers/boot.ts:84",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "boot.bootrec.scan",
+    "baselineEvidence": "server/operations/handlers/boot.ts:98",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "boot.bootrec.rebuild",
+    "baselineEvidence": "server/operations/handlers/boot.ts:119",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "boot.reagentc.enable",
+    "baselineEvidence": "server/operations/handlers/boot.ts:137",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "software.install",
+    "baselineEvidence": "server/operations/handlers/software.ts:2267",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "software.upgrade",
+    "baselineEvidence": "server/operations/handlers/software.ts:2330",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "software.upgrade.all",
+    "baselineEvidence": "server/operations/handlers/software.ts:2375",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "software.uninstall",
+    "baselineEvidence": "server/operations/handlers/software.ts:2401",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "software.bundle.install",
+    "baselineEvidence": "server/operations/handlers/software.ts:2446",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "software.bundle.custom.save",
+    "baselineEvidence": "server/operations/handlers/software.ts:2533",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "portable.launch",
+    "baselineEvidence": "server/operations/handlers/software.ts:2544",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "deployment.runtime.install",
+    "baselineEvidence": "No handler case found",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "deployment.store.repair",
+    "baselineEvidence": "server/operations/handlers/software.ts:2584",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "deployment.winget.health",
+    "baselineEvidence": "server/operations/handlers/software.ts:2603",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.super.full_pipeline",
+    "baselineEvidence": "server/operations/handlers/repair.ts:298",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "repair.autofix.plan_execute",
+    "baselineEvidence": "server/operations/handlers/repair.ts:339",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "system.selfheal.run",
+    "baselineEvidence": "server/operations/handlers/system.ts:433",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.analysis.run",
+    "baselineEvidence": "server/operations/handlers/performance.ts:179",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.optimizer.execute",
+    "baselineEvidence": "server/operations/handlers/performance.ts:221",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.temp.analyze",
+    "baselineEvidence": "server/operations/handlers/performance.ts:257",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.temp.clean",
+    "baselineEvidence": "server/operations/handlers/performance.ts:265",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.power.info",
+    "baselineEvidence": "server/operations/handlers/performance.ts:293",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.power.switch",
+    "baselineEvidence": "server/operations/handlers/performance.ts:301",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.power.energy_report",
+    "baselineEvidence": "server/operations/handlers/performance.ts:332",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.boot.report",
+    "baselineEvidence": "server/operations/handlers/performance.ts:351",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.storage_sense.status",
+    "baselineEvidence": "server/operations/handlers/performance.ts:372",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.storage_sense.toggle",
+    "baselineEvidence": "server/operations/handlers/performance.ts:384",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.visual_settings.launch",
+    "baselineEvidence": "server/operations/handlers/performance.ts:395",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.disk_cleanup.launch",
+    "baselineEvidence": "server/operations/handlers/performance.ts:401",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.drive.trim",
+    "baselineEvidence": "server/operations/handlers/performance.ts:407",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "perf.indexing.status",
+    "baselineEvidence": "server/operations/handlers/performance.ts:418",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.devmgmt",
+    "baselineEvidence": "server/operations/handlers/system.ts:376",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.diskmgmt",
+    "baselineEvidence": "server/operations/handlers/system.ts:382",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.eventvwr",
+    "baselineEvidence": "server/operations/handlers/system.ts:388",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.control",
+    "baselineEvidence": "server/operations/handlers/system.ts:394",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.settings",
+    "baselineEvidence": "server/operations/handlers/system.ts:400",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.resmon",
+    "baselineEvidence": "server/operations/handlers/system.ts:406",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.perfmon",
+    "baselineEvidence": "server/operations/handlers/system.ts:412",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "sys.admin.terminal",
+    "baselineEvidence": "server/operations/handlers/system.ts:418",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "dev.environment.info",
+    "baselineEvidence": "server/operations/handlers/performance.ts:429",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "dev.wsl.status",
+    "baselineEvidence": "server/operations/handlers/performance.ts:439",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "dev.hyperv.status",
+    "baselineEvidence": "server/operations/handlers/performance.ts:446",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "dev.sandbox.status",
+    "baselineEvidence": "server/operations/handlers/performance.ts:453",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "dev.developermode.status",
+    "baselineEvidence": "server/operations/handlers/performance.ts:460",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "dev.runtimes.inventory",
+    "baselineEvidence": "server/operations/handlers/performance.ts:467",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "power.wsl.install",
+    "baselineEvidence": "server/operations/handlers/performance.ts:474",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  },
+  {
+    "id": "power.hyperv.toggle",
+    "baselineEvidence": "server/operations/handlers/performance.ts:494",
+    "classification": "MISSING_BEHAVIOR",
+    "reason": "No native Windows execution. Former simulation is blocked."
+  }
+]

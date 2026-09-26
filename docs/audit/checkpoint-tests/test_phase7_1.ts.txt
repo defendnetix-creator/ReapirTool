@@ -1,0 +1,41 @@
+================================================================
+ AKSHIGO PC TOOLKIT PRO — PHASE 7.1 PAYMENT BACKEND TEST SUITE
+ Gateway: Razorpay (TEST MODE) | Target: Akshigo Licensing Engine
+================================================================
+
+[EmailService] Transactional Email Dispatched | Type: PURCHASE_CONFIRMATION | Customer: Tech Buyer (technician.buyer@akshigo.tech) | Order: ord_int_new_1790435829570 | Status: SENT | MsgId: msg_1790435829610_fc275bf7a030 | Attempts: 1
+[EmailService] Transactional Email Dispatched | Type: RENEWAL_CONFIRMATION | Customer: Renewal Tester (renewal.user@akshigo.tech) | Order: ord_int_renew_1790435829611 | Status: SENT | MsgId: msg_1790435829613_8890de8df39d | Attempts: 1
+----------------------------------------------------------------
+ TEST RESULTS SUMMARY
+----------------------------------------------------------------
+[1] create order                                  -> [32mPASS[0m
+    Created order ord_int_test_1790435829569_1 for professional (₹5999) with status CREATED
+[2] invalid plan rejected                         -> [32mPASS[0m
+    Unsupported or arbitrary plan strings safely rejected with null resolution
+[3] successful verified payment                   -> [32mPASS[0m
+    HMAC-SHA256 signature verification computed and validated correctly
+[4] invalid payment signature                     -> [32mPASS[0m
+    Forged or tampered signature successfully rejected
+[5] valid webhook signature                       -> [32mPASS[0m
+    Raw body HMAC-SHA256 webhook signature verified with secret
+[6] invalid webhook signature                     -> [32mPASS[0m
+    Forged webhook payload signature successfully rejected
+[7] duplicate webhook                             -> [32mPASS[0m
+    Webhook event ID recorded and recognized as duplicate on subsequent arrival
+[8] new subscription creates AKSG license         -> [32mPASS[0m
+    Created new subscription sub_tech_rs9etq with license AKSG-TECH-EUK6-V9AM-MBLS
+[9] renewal extends existing expiry exactly once  -> [32mPASS[0m
+    Subscription sub_prof_nrdxlk extended by exactly 365 days from current expiry. Duplicate call returned idempotent timestamp.
+[10] failed payment creates no license             -> [32mPASS[0m
+    Failed payment order preserved FAILED status and generated no subscription or license records
+----------------------------------------------------------------
+[32m✓ ALL 10 PHASE 7.1 PAYMENT & LICENSING SCENARIOS PASSED.[0m
+✔ scripts\test_phase7_1.ts (789.5886ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 812.7079

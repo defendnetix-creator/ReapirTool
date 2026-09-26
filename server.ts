@@ -1,6 +1,6 @@
 import express from "express";
+import { localPort, loopbackSecurity } from "./server/operations/security.js";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import { licensingRouter } from "./server/licensing/routes.js";
 import { updatesRouter } from "./server/updates/routes.js";
 import { paymentsRouter } from "./server/payments/routes.js";
@@ -8,8 +8,9 @@ import { operationsRouter } from "./server/operations/routes.js";
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = localPort;
 
+  app.use(loopbackSecurity);
   // Capture raw body for webhook HMAC-SHA256 signature verification
   app.use(
     express.json({
@@ -45,6 +46,7 @@ async function startServer() {
 
   // Vite middleware for development vs static dist for production
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -58,8 +60,8 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Akshigo PC Toolkit Pro server running on http://0.0.0.0:${PORT}`);
+  app.listen(PORT, "127.0.0.1", () => {
+    console.log(`Akshigo PC Toolkit Pro server running on http://127.0.0.1:${PORT}`);
   });
 }
 

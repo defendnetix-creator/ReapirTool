@@ -151,18 +151,30 @@ export interface ReportsResponse {
 }
 
 class OperationsClient {
-  private authHeader = 'AKSHIGO-LOOPBACK-SESSION-AUTHORIZED';
+  private session: Promise<string> | undefined;
+
+  private getSession(): Promise<string> {
+    if (!this.session) {
+      this.session = fetch('/api/v1/operations/session', { headers: { 'X-Toolkit-Client': 'akshigo-ui' }, cache: 'no-store' })
+        .then(async response => {
+          if (!response.ok) throw new Error('Local operations session unavailable.');
+          return (await response.json()).token as string;
+        }).catch(error => { this.session = undefined; throw error; });
+    }
+    return this.session;
+  }
 
   private async request(path: string, options: RequestInit = {}): Promise<any> {
     const headers = {
       'Content-Type': 'application/json',
-      'X-Toolkit-Auth': this.authHeader,
+      'X-Toolkit-Auth': await this.getSession(),
       ...(options.headers || {})
     };
 
     const res = await fetch(path, { ...options, headers });
     const data = await res.json();
     if (!res.ok) {
+      if (res.status === 401) this.session = undefined;
       throw new Error(data.error || data.message || `Request failed with status ${res.status}`);
     }
     return data;
@@ -179,7 +191,7 @@ class OperationsClient {
   public async executeOperation(
     operationId: string,
     params: Record<string, any> = {},
-    adminConfirmed: boolean = true
+    adminConfirmed: boolean = false
   ): Promise<{ jobId: string; status: string; message: string }> {
     return this.request('/api/v1/operations/execute', {
       method: 'POST',
@@ -190,7 +202,7 @@ class OperationsClient {
   public async submitJob(
     operationId: string,
     params: Record<string, any> = {},
-    adminConfirmed: boolean = true
+    adminConfirmed: boolean = false
   ): Promise<{ jobId: string; status: string; message: string }> {
     return this.executeOperation(operationId, params, adminConfirmed);
   }

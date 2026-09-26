@@ -1,0 +1,104 @@
+================================================================
+AKSHIGO PC TOOLKIT PRO — PHASE 8.4 PARITY TEST SUITE
+Verifying Backup, Services, Event Logs, System, Accounts, Policy
+================================================================
+
+[TEST 1] FAIL: Create Restore Point — NOT_IMPLEMENTED: backup.restore_point.create has no verified native implementation.
+[TEST 2] PASS: Restore Point List — Discovered 3 existing restore points
+[TEST 3] FAIL: File Backup Archive — NOT_IMPLEMENTED: backup.files.create has no verified native implementation.
+[TEST 4] FAIL: File Restore with Confirmation — NOT_IMPLEMENTED: backup.files.restore has no verified native implementation.
+[TEST 5] FAIL: Registry Backup Export — NOT_IMPLEMENTED: backup.registry.export has no verified native implementation.
+[TEST 6] FAIL: Registry Restore with Confirmation — NOT_IMPLEMENTED: backup.registry.restore has no verified native implementation.
+[TEST 7] PASS: Service List Inventory — Enumerated 14 services from Windows SCM
+[TEST 8] FAIL: Service Start / Stop Operations — NOT_IMPLEMENTED: services.start has no verified native implementation.
+[TEST 9] FAIL: Critical Service Protection — NOT_IMPLEMENTED: services.stop has no verified native implementation.
+[TEST 10] PASS: Optional Features List (DISM) — Enumerated 8 optional system packages and features
+[TEST 11] PASS: Event Log Read — Extracted 2 records from Application log channel
+[TEST 12] PASS: Event Log Filter — Filter correctly restricted query to Error level events (2 matches)
+[TEST 13] FAIL: Event Log Export — NOT_IMPLEMENTED: logs.eventlog.export has no verified native implementation.
+[TEST 14] FAIL: Admin Launcher Endpoints — NOT_IMPLEMENTED: sys.admin.taskmgr has no verified native implementation.
+[TEST 15] PASS: Startup Items Read/Toggle — Found 4 startup items in Registry Run keys and Startup folders
+[TEST 16] PASS: Account List & Security Groups — Audited current user User, 5 local accounts, and 4 security groups
+[TEST 17] FAIL: GPResult & GPUpdate — NOT_IMPLEMENTED: policy.gpupdate.force has no verified native implementation.
+Endpoint /api/v1/operations/backup/restore-points failed 401 check: got 403
+Endpoint /api/v1/operations/backup/restore-points failed 200 check: got 403
+Endpoint /api/v1/operations/backup/history failed 401 check: got 403
+Endpoint /api/v1/operations/backup/history failed 200 check: got 403
+Endpoint /api/v1/operations/backup/winre failed 401 check: got 403
+Endpoint /api/v1/operations/backup/winre failed 200 check: got 403
+Endpoint /api/v1/operations/services/list failed 401 check: got 403
+Endpoint /api/v1/operations/services/list failed 200 check: got 403
+Endpoint /api/v1/operations/services/critical failed 401 check: got 403
+Endpoint /api/v1/operations/services/critical failed 200 check: got 403
+Endpoint /api/v1/operations/services/features failed 401 check: got 403
+Endpoint /api/v1/operations/services/features failed 200 check: got 403
+Endpoint /api/v1/operations/eventlogs/query failed 401 check: got 403
+Endpoint /api/v1/operations/eventlogs/query failed 200 check: got 403
+Endpoint /api/v1/operations/eventlogs/issues failed 401 check: got 403
+Endpoint /api/v1/operations/eventlogs/issues failed 200 check: got 403
+Endpoint /api/v1/operations/system/processes failed 401 check: got 403
+Endpoint /api/v1/operations/system/processes failed 200 check: got 403
+Endpoint /api/v1/operations/system/startup failed 401 check: got 403
+Endpoint /api/v1/operations/system/startup failed 200 check: got 403
+Endpoint /api/v1/operations/system/tasks failed 401 check: got 403
+Endpoint /api/v1/operations/system/tasks failed 200 check: got 403
+Endpoint /api/v1/operations/system/environment failed 401 check: got 403
+Endpoint /api/v1/operations/system/environment failed 200 check: got 403
+Endpoint /api/v1/operations/accounts/data failed 401 check: got 403
+Endpoint /api/v1/operations/accounts/data failed 200 check: got 403
+Endpoint /api/v1/operations/policy/gpresult failed 401 check: got 403
+Endpoint /api/v1/operations/policy/gpresult failed 200 check: got 403
+[TEST 18] FAIL: X-Toolkit-Auth Security Enforcement — All 14 sensitive endpoints require X-Toolkit-Auth and successfully authenticate with valid token
+
+================================================================
+TEST SUMMARY: 7/18 PASSED
+STATUS: SOME TESTS FAILED
+================================================================
+Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\win\async.c, line 94
+✖ scripts\test_phase8_4.ts (886.079ms)
+===============================================================
+AKSHIGO PC TOOLKIT PRO - PHASE 8.5 VERIFICATION TEST SUITE
+===============================================================
+
+[TEST 1] PASS: Office Installation & Licensing Detection — Installed: true, Suite: Microsoft 365 Apps for enterprise, Apps: 7, Status: LICENSED
+[TEST 2] FAIL: Outlook Safe Mode, Profile & NavPane Operations — NOT_IMPLEMENTED: office.outlook.resetnavpane has no verified native implementation.
+[TEST 3] PASS: SCANPST / Inbox Repair Tool Detection — ScanPST installed flag: true, Path: C:\Program Files\Microsoft Office\root\Office16\SCANPST.EXE
+[TEST 4] FAIL: Office C2R Quick & Online Repair Launchers — NOT_IMPLEMENTED: office.repair.quick has no verified native implementation.
+[TEST 5] FAIL: OneDrive Reset & Teams Cache Cleanup — NOT_IMPLEMENTED: office.onedrive.reset has no verified native implementation.
+[TEST 6] PASS: RDP Status Inquiry (Port, NLA, Service) — Enabled: true, Port: 3389, NLA: true, Service: Running
+[TEST 7] FAIL: RDP Firewall Rule Audit — NOT_IMPLEMENTED: remote.firewall.rdp_audit has no verified native implementation.
+[TEST 8] FAIL: RDP Settings Toggle Safety & Admin Check — NOT_IMPLEMENTED: remote.rdp.toggle has no verified native implementation.
+[TEST 9] PASS: VPN Adapters & Proxy Configuration — VPN Adapters detected: 1, Proxy enabled: false
+[TEST 10] PASS: SMB Network Shares & Mapped Drives Inventory — SMB Shares: 4 (including ADMIN$), Mapped Drives: 2
+[TEST 11] FAIL: NAS Connectivity & NetBIOS Diagnostic Testing — NOT_IMPLEMENTED: remote.nas.test has no verified native implementation.
+[TEST 12] PASS: BIOS / UEFI Firmware Architecture & Secure Boot — Firmware: American Megatrends Inc., UEFI: true, Secure Boot: true
+[TEST 13] PASS: TPM 2.0 Security Module State Verification — TPM Present: true, Version: 2.0, Manufacturer: INTC (Intel PTT)
+[TEST 14] FAIL: BCD Inventory & Backup Operation — NOT_IMPLEMENTED: boot.bcd.backup has no verified native implementation.
+[TEST 15] FAIL: WinRE Status & ReAgentC Enable Operation — NOT_IMPLEMENTED: boot.reagentc.enable has no verified native implementation.
+[TEST 16] FAIL: bootrec Scan and Rebuild with Confirmation — NOT_IMPLEMENTED: boot.bootrec.scan has no verified native implementation.
+[TEST 17] FAIL: Group Policy Diagnostics & Force Update — NOT_IMPLEMENTED: policy.gpupdate.force has no verified native implementation.
+[TEST 18] FAIL: X-Toolkit-Auth Enforcement & Operations Catalog — 401 on missing token: false, 200 with token: false, Catalog contains Phase 8.5 ops: false
+
+===============================================================
+TEST SUMMARY: 7 / 18 PASSED
+===============================================================
+Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\win\async.c, line 94
+✖ scripts\test_phase8_5.ts (906.1108ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 930.1799
+
+✖ failing tests:
+
+test at scripts\test_phase8_4.ts:1:1
+✖ scripts\test_phase8_4.ts (886.079ms)
+  'test failed'
+
+test at scripts\test_phase8_5.ts:1:1
+✖ scripts\test_phase8_5.ts (906.1108ms)
+  'test failed'

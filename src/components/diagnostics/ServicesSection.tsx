@@ -30,6 +30,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExecuteOpera
   const [criticalServices, setCriticalServices] = useState<any[]>([]);
   const [optionalFeatures, setOptionalFeatures] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [dataWarnings, setDataWarnings] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<'All' | 'Running' | 'Stopped'>('All');
   const [activeSubTab, setActiveSubTab] = useState<'services' | 'critical' | 'features'>('services');
@@ -37,14 +38,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExecuteOpera
   const loadData = async () => {
     setIsLoading(true);
     try {
-      const [svcRes, critRes, featRes] = await Promise.all([
+      const results = await Promise.allSettled([
         operationsClient.getServicesList(),
         operationsClient.getCriticalServices(),
         operationsClient.getOptionalFeatures()
       ]);
-      setServices(svcRes.services || []);
-      setCriticalServices(critRes.critical || []);
-      setOptionalFeatures(featRes.features || []);
+      const [svcRes, critRes, featRes] = results;
+      setServices(svcRes.status === 'fulfilled' ? svcRes.value.services || [] : []);
+      setCriticalServices(critRes.status === 'fulfilled' ? critRes.value.critical || [] : []);
+      setOptionalFeatures(featRes.status === 'fulfilled' ? featRes.value.features || [] : []);
+      const labels = ['Service inventory', 'Critical-service assessment', 'Optional features'];
+      setDataWarnings(results.flatMap((result, i) => result.status === 'rejected' ? [`${labels[i]} unavailable: ${result.reason?.message || 'Windows query failed'}`] : []));
     } catch (err) {
       console.error('Failed to load services telemetry:', err);
     } finally {
@@ -85,6 +89,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExecuteOpera
 
   return (
     <div className="space-y-6">
+      {dataWarnings.length > 0 && <div role="status" className="text-xs text-amber-200 bg-amber-950/40 rounded p-3">{dataWarnings.join(' · ')}</div>}
       {/* Header with Sub-Tabs */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -236,7 +241,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onExecuteOpera
                       <td className="py-3 px-4 font-sans text-slate-400">{s.category}</td>
                       <td className="py-3 px-4 text-right">
                         <div className="flex items-center justify-end space-x-1.5">
-                          {s.status === 'Stopped' ? (
+                          {s.canControl !== true ? <span className="text-xs text-slate-500">Read-only</span> : s.status === 'Stopped' ? (
                             <button
                               onClick={() => handleStart(s.name)}
                               className="px-2 py-1 rounded bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 border border-emerald-800/60 text-[10px] flex items-center space-x-1 transition-colors"

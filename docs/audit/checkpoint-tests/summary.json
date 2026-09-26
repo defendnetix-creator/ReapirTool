@@ -1,0 +1,47 @@
+{
+  "nativeMutationsEnabled": false,
+  "emailProvider": "mock",
+  "results": [
+    {
+      "suite": "test_native_audit.ts",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "suite": "test_native_windows.ts",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "suite": "test_phase7_1.ts",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "suite": "test_phase7_2.ts",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "suite": "test_phase7_3.ts",
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "suite": "test_phase8_4.ts",
+      "exitCode": 1,
+      "signal": null
+    },
+    {
+      "suite": "test_phase8_5.ts",
+      "exitCode": 1,
+      "signal": null
+    },
+    {
+      "suite": "test_phase9_final_qa.ts",
+      "exitCode": 0,
+      "signal": null
+    }
+  ],
+  "note": "Phase 7/8/9 legacy suites use simulations/metadata and are not native runtime certification."
+}

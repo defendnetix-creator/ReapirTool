@@ -55,3 +55,7 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+.npm-cache/
+publish/
+release/

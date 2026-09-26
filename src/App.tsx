@@ -164,11 +164,26 @@ export function App() {
   const handleExecuteOperation = async (
     operationId: string,
     params: Record<string, any> = {},
-    requiresAdmin: boolean = false
+    requiresAdmin: boolean = false,
+    confirmed: boolean = false
   ) => {
     const requiredEntitlement = mapOperationToEntitlement(operationId);
     if (!hasEntitlement(requiredEntitlement, licenseState)) {
       setGatingFeature(requiredEntitlement);
+      return;
+    }
+
+    if (requiresAdmin && !confirmed) {
+      setPendingConfirmationItem({
+        id: operationId, operationId, params, title: operationId,
+        category: 'System Maintenance', description: 'Confirm this Windows operation.',
+        estimatedDuration: 'Varies', requiresAdmin: true, requiresRestart: true,
+        actionCommand: '', icon: 'Shield',
+        details: ['Run the selected operation with the current parameters.',
+          'Windows administrative permissions are required. This dialog does not grant elevation.',
+          'Some repairs interrupt connectivity or require a restart. Windows servicing cannot be cancelled here.',
+          `Parameters: ${JSON.stringify(params)}`]
+      });
       return;
     }
 
@@ -188,11 +203,11 @@ export function App() {
       const newLog: AuditLogEntry = {
         id: `op-${res.jobId}`,
         timestamp: timeStr,
-        actor: requiresAdmin ? 'admin:elevated' : 'user:technician',
+        actor: requiresAdmin ? 'user:confirmed-admin-operation' : 'user:technician',
         scope: operationId.split('.')[0].toUpperCase(),
-        event: `Execute: ${operationId}`,
-        target: '127.0.0.1:9999',
-        status: 'SUCCESS'
+        event: `Accepted: ${operationId}; awaiting Windows result`,
+        target: window.location.host,
+        status: 'WARN'
       };
 
       setAuditLogs((prev) => [newLog, ...prev]);
@@ -201,54 +216,14 @@ export function App() {
     }
   };
 
-  // Action Dispatcher with Entitlement Enforcement
-  const handleTriggerAction = (
-    actionName: string,
-    command: string,
-    requiresAdmin: boolean = false
-  ) => {
-    const requiredEntitlement = mapActionToEntitlement(actionName, command);
-
-    if (!hasEntitlement(requiredEntitlement, licenseState)) {
-      setGatingFeature(requiredEntitlement);
+  // Arbitrary command strings have no audited native implementation.
+  const handleTriggerAction = (actionName: string, _command: string, _requiresAdmin = false) => {
+    if (['Command Copied', 'Reference Command Only', 'Execution Blocked by Security Policy'].includes(actionName)) {
+      addToast('info', actionName, _command);
       return;
     }
-
-    addToast(
-      'info',
-      'Action Dispatched',
-      `Executing ${actionName} via secured loopback bridge...`
-    );
-
-    // Append to live audit logs
-    const now = new Date();
-    const timeStr = `${String(now.getUTCHours()).padStart(2, '0')}:${String(
-      now.getUTCMinutes()
-    ).padStart(2, '0')}:${String(now.getUTCSeconds()).padStart(2, '0')}.${String(
-      now.getMilliseconds()
-    ).padStart(3, '0')}`;
-
-    const newLog: AuditLogEntry = {
-      id: `log-${Date.now()}`,
-      timestamp: timeStr,
-      actor: requiresAdmin ? 'admin:elevated' : 'user:technician',
-      scope: actionName.split(' ')[0],
-      event: command,
-      target: '127.0.0.1:9999',
-      status: 'SUCCESS'
-    };
-
-    setAuditLogs((prev) => [newLog, ...prev]);
-
-    setTimeout(() => {
-      addToast(
-        'success',
-        'Operation Succeeded',
-        `${actionName} completed with exit code 0.`
-      );
-    }, 1100);
+    addToast('warning', 'Operation Unavailable', `${actionName} has not been connected to a verified Windows operation.`);
   };
-
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#07090e] text-slate-100 antialiased">
       {/* Sidebar */}
@@ -276,6 +251,9 @@ export function App() {
           onOpenActivation={() => setIsActivationOpen(true)}
         />
 
+        <div role="status" className="px-4 py-2 text-xs text-amber-200 bg-amber-950/50 border-b border-amber-800">
+          Audit build — not release-ready. Dashboard values are demonstration data. Some repairs and inventories remain unavailable.
+        </div>
         {/* View Router */}
         <main className="flex-1 overflow-y-auto bg-[#07090e]">
           {activeTab === 'dashboard' && (
@@ -404,7 +382,8 @@ export function App() {
               handleExecuteOperation(
                 item.operationId,
                 item.params || {},
-                item.requiresAdmin
+                item.requiresAdmin,
+                true
               );
             } else {
               handleTriggerAction(

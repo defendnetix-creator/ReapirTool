@@ -1,0 +1,11 @@
+✔ Windows runner invokes the real read-only WinHTTP proxy query (155.3867ms)
+✔ restore-point provider verifies a new checkpoint and rejects throttling or stale data (mocked cmdlets) (3016.6764ms)
+✔ Windows service inventory returns actual service records without changing services (3340.3576ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6767.5549

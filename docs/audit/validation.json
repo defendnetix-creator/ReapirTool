@@ -1,0 +1,24 @@
+{
+  "baselineCommit": "45916a300f057b6a17ca26c61dc15b8237f2ce5f",
+  "workingBranch": "audit/native-behavior-hardening",
+  "releaseReady": false,
+  "nativeOperationIds": 36,
+  "unimplementedOperationIds": 160,
+  "checks": {
+    "typescript": "PASS",
+    "reactAndServerBuild": "PASS; existing large-bundle warning",
+    "nativeSecurityRegressionTests": { "passed": 9, "failed": 0 },
+    "windowsProviderTests": { "passed": 3, "failed": 0, "liveReadOnlyQueries": ["WinHTTP proxy", "Windows service inventory"], "mockedWindowsBehavior": "Restore-point success, throttling, stale checkpoint verification" },
+    "productionSmoke": "PASS, including authenticated live service inventory with mutating jobs disabled",
+    "powerShellSyntax": "PASS",
+    "releaseGates": "PASS: absent host/compiler produce explicit failures without fake artifacts",
+    "legacySourcePreservation": "PASS: git diff against unchanged baseline is empty"
+  },
+  "earlierParitySuiteRunAt27NativeOperations": {
+    "phase8_4": { "passed": 7, "failed": 11 },
+    "phase8_5": { "passed": 7, "failed": 11 },
+    "note": "Native execution was disabled. Existing passes use seeded data; failures include unimplemented operations and obsolete auth assumptions. The legacy runner also emitted a libuv teardown assertion. These suites do not certify Windows behavior."
+  },
+  "notPerformed": ["State-changing repairs on this PC", "Real restore-point creation", "Windows VM all-feature validation", "Defender artifact scan", "Authenticode signing", "EXE or installer build"],
+  "releaseBlockers": ["160 native operation IDs unimplemented", "Legacy label-by-label audit incomplete", "Current React/WebView2 host project missing", ".NET SDK missing", "Inno Setup compiler missing", "Installer runtime payload and VM validation incomplete"]
+}
