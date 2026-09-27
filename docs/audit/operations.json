@@ -56,26 +56,26 @@
   {
     "id": "repair.cbs_log.view",
     "baselineEvidence": "server/operations/handlers/repair.ts:142",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "repair.wu.reset_services",
     "baselineEvidence": "server/operations/handlers/repair.ts:158",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "repair.wu.softwaredist_reset",
     "baselineEvidence": "server/operations/handlers/repair.ts:169",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "repair.wu.catroot2_reset",
     "baselineEvidence": "server/operations/handlers/repair.ts:180",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "repair.wu.diagnostics",
@@ -230,8 +230,8 @@
   {
     "id": "network.workflow.common_repair",
     "baselineEvidence": "server/operations/handlers/network.ts:231",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "network.netstat.sockets",
@@ -242,26 +242,26 @@
   {
     "id": "printer.inventory.get",
     "baselineEvidence": "server/operations/handlers/printer.ts:77",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "printer.spooler.restart",
     "baselineEvidence": "server/operations/handlers/printer.ts:82",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "printer.spooler.stop",
     "baselineEvidence": "server/operations/handlers/printer.ts:99",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "printer.spooler.start",
     "baselineEvidence": "server/operations/handlers/printer.ts:107",
-    "classification": "MISSING_BEHAVIOR",
-    "reason": "No native Windows execution. Former simulation is blocked."
+    "classification": "PARTIAL_EQUIVALENT",
+    "reason": "Native command plan restored; Windows outcome/UI integration not validated."
   },
   {
     "id": "printer.queue.purge",

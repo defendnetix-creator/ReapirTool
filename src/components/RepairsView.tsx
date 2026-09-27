@@ -533,19 +533,19 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
       title: 'Automated 5-Step Connectivity Recovery',
       category: 'Network Repairs',
       description:
-        'Autonomous remediation pipeline: executes DNS flush, Winsock reset, TCP/IP stack reset, DHCP renewal, and proxy reset in one click.',
+        'Releases DHCP leases, flushes DNS, resets Winsock and TCP/IP, then renews DHCP leases. Connectivity is interrupted; restart required. Stops on failure.',
       estimatedDuration: '1-2 mins',
       requiresAdmin: true,
       requiresRestart: true,
       isLongRunning: true,
-      actionCommand: 'OneClickSuperRepair.ps1 -NetworkSuite',
+      actionCommand: 'ipconfig /release → ipconfig /flushdns → netsh winsock reset → netsh int ip reset → ipconfig /renew',
       icon: 'Zap',
       details: [
-        'Step 1: Flush DNS resolver cache',
-        'Step 2: Reset Winsock catalog',
-        'Step 3: Reset TCP/IP stack',
-        'Step 4: Renew DHCP address lease',
-        'Step 5: Reset proxy configurations'
+        'Step 1: Release DHCP address leases',
+        'Step 2: Flush DNS resolver cache',
+        'Step 3: Reset Winsock catalog',
+        'Step 4: Reset TCP/IP stack',
+        'Step 5: Renew DHCP address leases'
       ]
     },
 
@@ -553,19 +553,19 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
     {
       id: 'printer-spooler-restart',
       operationId: 'printer.spooler.restart',
-      title: 'Restart Print Spooler & Purge Stuck Queue',
+      title: 'Restart Print Spooler Service',
       category: 'Printer Repairs',
       description:
-        'Terminates jammed spoolsv.exe processes, purges locked .SHD and .SPL job files from C:\\Windows\\System32\\spool\\PRINTERS, and restarts the spooler.',
+        'Stops and starts the Print Spooler through Windows service control. Verifies each state and refuses forced dependent-service shutdown.',
       estimatedDuration: '20 secs',
       requiresAdmin: true,
       requiresRestart: false,
-      actionCommand: 'Stop-Service Spooler -Force; Remove-Item C:\\Windows\\System32\\spool\\PRINTERS\\* -Force; Start-Service Spooler',
+      actionCommand: 'Stop-Service Spooler → wait for Stopped → Start-Service Spooler → wait for Running',
       icon: 'Printer',
       details: [
         'Stops Print Spooler service safely',
-        'Purges corrupt spool manifests (*.spl, *.shd)',
-        'Restarts Spooler and unlocks print port buffers'
+        'Keeps existing queued documents',
+        'Verifies that the Spooler service reaches Running'
       ]
     },
     {
@@ -698,6 +698,7 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
 
   const handleOpenCbsLogs = async () => {
     setIsLoadingLogs(true);
+    setCbsLogData(null);
     setCbsLogsOpen(true);
     try {
       const data = await operationsClient.getCbsLogs();
@@ -1050,7 +1051,7 @@ export const RepairsView: React.FC<RepairsViewProps> = ({
 
             <div className="px-6 py-3 bg-[#0a0d14] border-t border-white/[0.06] flex items-center justify-between">
               <span className="text-[11px] font-mono text-slate-500">
-                Extracted via elevated loopback RPC
+                Last 200 lines only. Reading this log does not certify a successful repair.
               </span>
               <button
                 onClick={() => setCbsLogsOpen(false)}

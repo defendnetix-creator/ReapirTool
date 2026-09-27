@@ -28,6 +28,18 @@ test('legacy SFC/DISM order and ordinary cleanup are preserved', () => {
   assert.deepEqual(planOperation('repair.dism.clean_store')[0].args, ['/Online', '/Cleanup-Image', '/StartComponentCleanup']);
 });
 
+test('update repair and CBS viewing accept no caller-selected scripts or paths', () => {
+  for (const id of ['repair.wu.reset_services', 'repair.cbs_log.view']) {
+    const plan = planOperation(id);
+    assert.equal(plan[0].json, true);
+    assert.equal(plan[0].executable, 'WindowsPowerShell\\v1.0\\powershell.exe');
+    assert.ok(plan[0].args.includes('-File'));
+    for (const params of [{ script: 'evil.ps1' }, { serviceName: 'WinDefend' }, { filePath: 'C:\\secret.txt' }]) {
+      assert.throws(() => planOperation(id, params));
+    }
+  }
+});
+
 test('source repair requires explicit image index, preserves spaces, blocks option injection', () => {
   const result = planOperation('repair.dism.source_wim', { sourcePath: 'D:\\Install Media\\install.esd', sourceIndex: 2 });
   assert.deepEqual(result[0].args.slice(-2), ['/Source:esd:D:\\Install Media\\install.esd:2', '/LimitAccess']);
@@ -70,6 +82,27 @@ test('network targets cannot introduce options or commands; disk inspection stay
   assert.deepEqual(planOperation('storage.chkdsk.scan', { volume: 'd:' })[0].args, ['D:']);
   assert.throws(() => planOperation('storage.chkdsk.scan', { volume: 'C: /f' }));
   assert.deepEqual(planOperation('network.ip.renew')[0].args, ['/renew']);
+  assert.deepEqual(planOperation('network.workflow.common_repair').map(cmd => [cmd.executable, ...cmd.args]), [
+    ['ipconfig.exe', '/release'], ['ipconfig.exe', '/flushdns'], ['netsh.exe', 'winsock', 'reset'],
+    ['netsh.exe', 'int', 'ip', 'reset'], ['ipconfig.exe', '/renew']
+  ]);
+});
+
+test('spooler restart cannot clear print queues or target another service', () => {
+  assert.deepEqual(planOperation('printer.spooler.restart')[0].args.slice(-4), ['-Action', 'Restart', '-ServiceName', 'Spooler']);
+  assert.equal(planOperation('printer.spooler.restart').length, 1);
+  assert.throws(() => planOperation('printer.spooler.restart', { serviceName: 'WinDefend' }));
+});
+
+test('network repair attempts DHCP recovery on failure and never reports recovery as repair success', async () => {
+  const calls: string[][] = [];
+  const logs: string[] = [];
+  await assert.rejects(executeNative('network.workflow.common_repair', {}, (_percent, _step, log) => logs.push(log), async cmd => {
+    calls.push(cmd.args);
+    return { exitCode: cmd.args[0] === 'winsock' ? 5 : 0, output: 'fixture output' };
+  }), /exit code 5/);
+  assert.deepEqual(calls, [['/release'], ['/flushdns'], ['winsock', 'reset'], ['/renew']]);
+  assert.ok(logs.some(log => log.includes('recovery after failed repair')));
 });
 
 test('service control protects security/core services and validates startup parameters', () => {

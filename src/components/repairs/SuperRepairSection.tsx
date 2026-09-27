@@ -37,65 +37,83 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
   const stages: SuperRepairStage[] = [
     {
       stageNumber: 1,
-      name: 'System Health & Snapshot Checkpoint',
+      name: 'Create System Restore Point',
       category: 'Snapshot',
-      operations: ['repair.recovery.create_restore_point', 'hardware.telemetry.get'],
-      description: 'Captures a rollback Volume Shadow Copy system restore point before applying modifications.',
+      operations: ['repair.recovery.create_restore_point'],
+      description: 'Requests a verified restore point before changes. System Protection and Windows creation limits must allow it.',
       estimatedTime: '45 secs',
       risk: 'safe'
     },
     {
       stageNumber: 2,
-      name: 'Windows Servicing & System Integrity',
-      category: 'Windows Integrity',
-      operations: ['repair.dism.restorehealth', 'repair.sfc.scannow'],
-      description: 'Executes DISM Component Store RestoreHealth followed by SFC /scannow deep file validation.',
-      estimatedTime: '4-7 mins',
-      risk: 'safe'
+      name: 'Clear Temporary Files',
+      category: 'Temporary Files',
+      operations: [],
+      description: 'Original stage clears user and Windows temporary files. Safe path handling and accurate deletion counts remain unimplemented.',
+      estimatedTime: 'Not verified',
+      risk: 'moderate'
     },
     {
       stageNumber: 3,
       name: 'Network & Sockets Health Sweep',
       category: 'Network',
-      operations: ['network.dns.flush', 'network.winsock.reset', 'network.ip.renew'],
-      description: 'Flushes DNS resolver cache, purges ARP tables, and resets corrupted Winsock catalog handles.',
+      operations: ['network.dns.flush', 'network.winsock.reset', 'network.tcpip.reset'],
+      description: 'Flushes DNS, resets Winsock, then resets TCP/IP. This stage does not release DHCP leases or change proxy settings.',
       estimatedTime: '30 secs',
       risk: 'safe'
     },
     {
       stageNumber: 4,
-      name: 'Windows Update Daemons & Catalog Reset',
-      category: 'Windows Update',
-      operations: ['repair.wu.reset_services', 'repair.wu.softwaredist_reset'],
-      description: 'Restarts wuauserv, bits, and cryptSvc; purges stale SoftwareDistribution\\Download cache.',
-      estimatedTime: '1-2 mins',
-      risk: 'moderate'
+      name: 'Verify Protected System Files',
+      category: 'Windows Integrity',
+      operations: ['repair.sfc.verifyonly'],
+      description: 'Runs SFC /verifyonly, matching the original diagnostic step. It does not run /scannow.',
+      estimatedTime: 'Not verified',
+      risk: 'safe'
     },
     {
       stageNumber: 5,
-      name: 'Modern Store & AppX Framework Refresh',
-      category: 'Store & Runtime',
-      operations: ['repair.store.wsreset', 'deployment.runtime.install'],
-      description: 'Resets Microsoft Store cache (wsreset) and validates official Desktop Runtimes.',
+      name: 'Check Component Store Health',
+      category: 'Windows Integrity',
+      operations: ['repair.dism.checkhealth'],
+      description: 'Runs DISM /Online /Cleanup-Image /CheckHealth. It does not substitute RestoreHealth.',
       estimatedTime: '45 secs',
       risk: 'safe'
     },
     {
       stageNumber: 6,
-      name: 'Printer Subsystem & Spooler Sanitation',
-      category: 'Print Subsystem',
-      operations: ['printer.spooler.restart', 'printer.queue.purge'],
-      description: 'Purges hung .SHD/.SPL print job manifests and cycles the Print Spooler daemon.',
-      estimatedTime: '20 secs',
-      risk: 'safe'
+      name: 'Scan NTFS File System Online',
+      category: 'Storage',
+      operations: [],
+      description: 'Original stage runs chkdsk C: /scan. Online NTFS scan behavior must be validated separately from read-only CHKDSK.',
+      estimatedTime: 'Not verified',
+      risk: 'moderate'
     },
     {
       stageNumber: 7,
-      name: 'Final Subsystem Health Scan & Verification',
+      name: 'Inspect Driver Signatures',
+      category: 'Drivers',
+      operations: [],
+      description: 'Queries unsigned plug-and-play driver records. It does not install drivers or certify every driver as trusted.',
+      estimatedTime: 'Not verified',
+      risk: 'safe'
+    },
+    {
+      stageNumber: 8,
+      name: 'Clear Update Download Cache',
+      category: 'Windows Update',
+      operations: [],
+      description: 'Original stage clears only SoftwareDistribution\\Download contents with update-service handling. Full cache rename is a different action.',
+      estimatedTime: 'Not verified',
+      risk: 'moderate'
+    },
+    {
+      stageNumber: 9,
+      name: 'Report Current System Health',
       category: 'Final Audit',
-      operations: ['repair.wu.status', 'system.selfheal.run'],
-      description: 'Conducts final verification across all subsystems and registers completed remediation in audit log.',
-      estimatedTime: '30 secs',
+      operations: [],
+      description: 'Reports measured OS, uptime, CPU and memory data. Failed stages must remain failures in the final report.',
+      estimatedTime: 'Not verified',
       risk: 'safe'
     }
   ];
@@ -126,7 +144,7 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
               </h2>
               <div className="flex items-center gap-2 mt-0.5">
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-500/30 font-bold">
-                  AUTONOMOUS 7-STAGE PC HEALING ENGINE
+                  ORIGINAL 9-STAGE WORKFLOW
                 </span>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-500/30 font-bold">
                   UNAVAILABLE — PARITY AUDIT PENDING
@@ -135,17 +153,19 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
             </div>
           </div>
           <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-            Restores system health end-to-end. Runs sequential, deterministic repairs across Windows component store, system integrity, network connectivity, update services, modern runtime, and print queues.
+            The original workflow combines diagnostics and repairs in the sequence below. Execution remains unavailable until every stage is implemented and validated.
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
           <button
+            disabled
+            title="Unavailable: native stage implementation and Windows VM validation are incomplete."
             onClick={() => setIsConfirmOpen(true)}
             className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-mono font-bold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.35)] transition-all transform hover:scale-[1.02] active:scale-[0.98]"
           >
             <Play className="w-4 h-4 fill-black" />
-            <span>Launch Super Repair Pipeline</span>
+            <span>Super Repair Unavailable</span>
           </button>
         </div>
       </div>
@@ -155,10 +175,10 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
             <Layers className="w-4 h-4 text-cyan-400" />
-            Super Repair Execution Sequence (7 Verified Stages)
+            Super Repair Sequence (9 Original Stages; Not Validated)
           </h3>
           <span className="text-[11px] font-mono text-slate-500">
-            Total Est. Duration: ~8-12 Minutes
+            Runtime duration not verified
           </span>
         </div>
 
@@ -218,7 +238,7 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
                   Confirm One-Click Super Repair Execution
                 </h3>
                 <p className="text-xs text-slate-400">
-                  This procedure will execute the entire 7-stage PC remediation pipeline in an elevated subshell.
+                  The nine-stage workflow is unavailable pending native implementation and Windows validation.
                 </p>
               </div>
             </div>
@@ -226,15 +246,15 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
             <div className="p-3.5 rounded-xl bg-[#06080e] border border-white/[0.08] space-y-2 text-xs font-mono">
               <div className="flex items-center justify-between text-slate-300">
                 <span>Stages to run:</span>
-                <span className="font-bold text-cyan-300">7 Automated Stages</span>
+                <span className="font-bold text-cyan-300">9 Original Stages</span>
               </div>
               <div className="flex items-center justify-between text-slate-300">
                 <span>Admin Elevation:</span>
-                <span className="text-amber-400 font-bold">Required (UAC Active)</span>
+                <span className="text-amber-400 font-bold">Required; host integration pending</span>
               </div>
               <div className="flex items-center justify-between text-slate-300">
                 <span>Restart Required:</span>
-                <span className="text-emerald-400 font-bold">No (Zero immediate reboots)</span>
+                <span className="text-amber-400 font-bold">Required after network resets</span>
               </div>
             </div>
 
@@ -248,7 +268,7 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
               <div className="text-xs font-mono">
                 <span className="font-bold text-white">Create Volume Shadow Copy Restore Point</span>
                 <p className="text-[10px] text-slate-400">
-                  Safely captures system state prior to modifications for 1-click rollback.
+                  Creation can fail under Windows policy; a restore point does not guarantee rollback.
                 </p>
               </div>
             </label>
@@ -261,6 +281,7 @@ export const SuperRepairSection: React.FC<SuperRepairSectionProps> = ({ onExecut
                 Cancel
               </button>
               <button
+                disabled
                 onClick={handleLaunchSuperRepair}
                 className="px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-mono font-bold flex items-center gap-2 shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
               >

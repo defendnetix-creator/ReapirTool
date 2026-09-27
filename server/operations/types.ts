@@ -120,16 +120,16 @@ export interface PrinterInfo {
   id: string;
   name: string;
   isDefault: boolean;
-  status: 'Ready' | 'Offline' | 'Error' | 'Paused' | 'Printing';
-  queueCount: number;
+  status: 'Ready' | 'Offline' | 'Error' | 'Paused' | 'Printing' | 'Unknown';
+  queueCount: number | null;
   port: string;
   driverName: string;
-  driverVersion: string;
+  driverVersion: string | null;
   isShared: boolean;
   shareName?: string;
   location?: string;
-  colorSupported: boolean;
-  duplexSupported: boolean;
+  colorSupported: boolean | null;
+  duplexSupported: boolean | null;
   diagnosticNotes?: string;
 }
 

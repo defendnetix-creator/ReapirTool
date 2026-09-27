@@ -53,8 +53,8 @@ export interface NetworkConfigResponse {
 export interface PrinterDataResponse {
   printers: any[];
   spoolerStatus: string;
-  totalQueuedJobs: number;
-  defaultPrinter: string;
+  totalQueuedJobs: number | null;
+  defaultPrinter: string | null;
 }
 
 export interface HardwareSystemResponse {

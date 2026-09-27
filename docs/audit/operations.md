@@ -13,10 +13,10 @@ These are source-level findings, not Windows runtime certification. PARTIAL_EQUI
 | repair.dism.source_wim | PARTIAL_EQUIVALENT | server/operations/handlers/repair.ts:108 | Native command plan restored; Windows outcome/UI integration not validated. |
 | repair.dism.clean_store | PARTIAL_EQUIVALENT | server/operations/handlers/repair.ts:118 | Native command plan restored; Windows outcome/UI integration not validated. |
 | repair.sfc_dism.full | PARTIAL_EQUIVALENT | server/operations/handlers/repair.ts:127 | Native command plan restored; Windows outcome/UI integration not validated. |
-| repair.cbs_log.view | MISSING_BEHAVIOR | server/operations/handlers/repair.ts:142 | No native Windows execution. Former simulation is blocked. |
-| repair.wu.reset_services | MISSING_BEHAVIOR | server/operations/handlers/repair.ts:158 | No native Windows execution. Former simulation is blocked. |
-| repair.wu.softwaredist_reset | MISSING_BEHAVIOR | server/operations/handlers/repair.ts:169 | No native Windows execution. Former simulation is blocked. |
-| repair.wu.catroot2_reset | MISSING_BEHAVIOR | server/operations/handlers/repair.ts:180 | No native Windows execution. Former simulation is blocked. |
+| repair.cbs_log.view | PARTIAL_EQUIVALENT | server/operations/handlers/repair.ts:142 | Native command plan restored; Windows outcome/UI integration not validated. |
+| repair.wu.reset_services | PARTIAL_EQUIVALENT | server/operations/handlers/repair.ts:158 | Native command plan restored; Windows outcome/UI integration not validated. |
+| repair.wu.softwaredist_reset | PARTIAL_EQUIVALENT | server/operations/handlers/repair.ts:169 | Native command plan restored; Windows outcome/UI integration not validated. |
+| repair.wu.catroot2_reset | PARTIAL_EQUIVALENT | server/operations/handlers/repair.ts:180 | Native command plan restored; Windows outcome/UI integration not validated. |
 | repair.wu.diagnostics | MISSING_BEHAVIOR | server/operations/handlers/repair.ts:189 | No native Windows execution. Former simulation is blocked. |
 | repair.wu.status | MISSING_BEHAVIOR | server/operations/handlers/repair.ts:203 | No native Windows execution. Former simulation is blocked. |
 | repair.explorer.restart | MISSING_BEHAVIOR | server/operations/handlers/repair.ts:213 | No native Windows execution. Former simulation is blocked. |
@@ -42,12 +42,12 @@ These are source-level findings, not Windows runtime certification. PARTIAL_EQUI
 | network.dns.lookup | PARTIAL_EQUIVALENT | server/operations/handlers/network.ts:194 | Native command plan restored; Windows outcome/UI integration not validated. |
 | network.traceroute | PARTIAL_EQUIVALENT | server/operations/handlers/network.ts:203 | Native command plan restored; Windows outcome/UI integration not validated. |
 | network.apipa.detect | MISSING_BEHAVIOR | server/operations/handlers/network.ts:223 | No native Windows execution. Former simulation is blocked. |
-| network.workflow.common_repair | MISSING_BEHAVIOR | server/operations/handlers/network.ts:231 | No native Windows execution. Former simulation is blocked. |
+| network.workflow.common_repair | PARTIAL_EQUIVALENT | server/operations/handlers/network.ts:231 | Native command plan restored; Windows outcome/UI integration not validated. |
 | network.netstat.sockets | PARTIAL_EQUIVALENT | server/operations/handlers/network.ts:246 | Native command plan restored; Windows outcome/UI integration not validated. |
-| printer.inventory.get | MISSING_BEHAVIOR | server/operations/handlers/printer.ts:77 | No native Windows execution. Former simulation is blocked. |
-| printer.spooler.restart | MISSING_BEHAVIOR | server/operations/handlers/printer.ts:82 | No native Windows execution. Former simulation is blocked. |
-| printer.spooler.stop | MISSING_BEHAVIOR | server/operations/handlers/printer.ts:99 | No native Windows execution. Former simulation is blocked. |
-| printer.spooler.start | MISSING_BEHAVIOR | server/operations/handlers/printer.ts:107 | No native Windows execution. Former simulation is blocked. |
+| printer.inventory.get | PARTIAL_EQUIVALENT | server/operations/handlers/printer.ts:77 | Native command plan restored; Windows outcome/UI integration not validated. |
+| printer.spooler.restart | PARTIAL_EQUIVALENT | server/operations/handlers/printer.ts:82 | Native command plan restored; Windows outcome/UI integration not validated. |
+| printer.spooler.stop | PARTIAL_EQUIVALENT | server/operations/handlers/printer.ts:99 | Native command plan restored; Windows outcome/UI integration not validated. |
+| printer.spooler.start | PARTIAL_EQUIVALENT | server/operations/handlers/printer.ts:107 | Native command plan restored; Windows outcome/UI integration not validated. |
 | printer.queue.purge | MISSING_BEHAVIOR | server/operations/handlers/printer.ts:115 | No native Windows execution. Former simulation is blocked. |
 | printer.diagnostics.run | MISSING_BEHAVIOR | server/operations/handlers/printer.ts:130 | No native Windows execution. Former simulation is blocked. |
 | printer.offline.fix | MISSING_BEHAVIOR | server/operations/handlers/printer.ts:147 | No native Windows execution. Former simulation is blocked. |

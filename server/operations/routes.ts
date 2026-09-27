@@ -34,6 +34,22 @@ operationsRouter.post('/jobs/:jobId/cancel', (_req, res) => {
   res.status(409).json({ success: false, error: 'Windows servicing cannot safely be cancelled here. Wait for the command to finish.' });
 });
 // These providers only inspect Windows. Mutating actions still require an enabled host/job.
+operationsRouter.get('/printers', async (_req, res) => {
+  try {
+    const result = await executeNative('printer.inventory.get', {}, () => {});
+    if (!Array.isArray(result.printers)) throw new Error('Windows returned invalid printer inventory.');
+    res.setHeader('Cache-Control', 'no-store');
+    res.json({ printers: result.printers, spoolerStatus: result.spoolerStatus, totalQueuedJobs: result.totalQueuedJobs, defaultPrinter: result.defaultPrinter });
+  } catch (error) { res.status(503).json({ error: error instanceof Error ? error.message : String(error) }); }
+});
+operationsRouter.get('/cbs-logs', async (_req, res) => {
+  try {
+    const result = await executeNative('repair.cbs_log.view', {}, () => {});
+    if (!Array.isArray(result.lines)) throw new Error('Windows returned invalid CBS log data.');
+    res.setHeader('Cache-Control', 'no-store');
+    res.json({ logPath: result.logPath, entries: result.lines, excerpt: true, maximumLines: 200 });
+  } catch (error) { res.status(503).json({ error: error instanceof Error ? error.message : String(error) }); }
+});
 const liveProviders = [
   { route: '/services/list', operation: 'services.inventory.list', property: 'services' },
   { route: '/backup/restore-points', operation: 'backup.restore_points.list', property: 'restorePoints' }

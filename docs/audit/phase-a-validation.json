@@ -1,0 +1,42 @@
+{
+  "preservationCommit": "9f08fb8c1d90e2d30bb9060be6fca259191fa589",
+  "branch": "audit/native-behavior-hardening",
+  "registeredOperations": 196,
+  "nativeImplemented": 45,
+  "unavailable": 151,
+  "parityClassification": {
+    "EXACT_EQUIVALENT": 0,
+    "SAFE_EQUIVALENT": 0,
+    "ENHANCED_EQUIVALENT": 0,
+    "PARTIAL_EQUIVALENT": 45,
+    "MISSING_BEHAVIOR": 151,
+    "note": "Conservative registry-level classifications. Original legitimate-action and individually verified security-removal counts are not yet established."
+  },
+  "affectedTests": {
+    "status": "PASS",
+    "passed": 18,
+    "failed": 0,
+    "evidence": "docs/audit/phase-a-tests.txt",
+    "scope": "Includes fixtures, HTTP security regression checks, and three real read-only Windows queries; not 18 validated Windows repairs."
+  },
+  "realWindowsRuntime": {
+    "tested": 3,
+    "passed": 3,
+    "failed": 0,
+    "operationIds": ["network.proxy.status", "services.inventory.list", "printer.inventory.get"],
+    "environment": "Current Windows workstation, read-only queries; no disposable VM available.",
+    "destructiveRepairTests": "BLOCKED"
+  },
+  "typescript": "PASS",
+  "reactAndBackendBuild": "PASS",
+  "buildWarnings": ["Existing frontend bundle exceeds Vite's 500 kB warning threshold."],
+  "productionSmoke": "PASS",
+  "productionSmokeScope": "React assets, isolated server source, session/auth/Origin checks, disabled mutations and live authenticated service inventory.",
+  "legacyTests": "Phase 8.4/8.5 failures remain recorded under checkpoint-tests; not repaired by reinstating simulations.",
+  "webView2Host": "INCOMPLETE",
+  "cleanWindowsInstall": "NOT_TESTED",
+  "defender": "NOT_TESTED",
+  "exe": "NOT_CREATED",
+  "installer": "NOT_CREATED",
+  "finalStatus": "NOT_READY"
+}

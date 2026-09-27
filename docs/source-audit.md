@@ -7,9 +7,9 @@ Working branch: `audit/native-behavior-hardening`.
 
 The baseline React application is substantially a demonstration, not a working replacement for the original toolkit. All 18 operation-handler modules lack Windows process/API execution. They return seeded data, timers and scripted success messages. The previous 93.5% parity / 100% backend coverage claims are not command-level validation.
 
-The source index contains 196 backend operation definitions, 158 feature entries, and 649 labels in the top-level legacy batch file. The changes provide native implementations for 36 operation IDs. The other 160 are explicitly unavailable. This is partial remediation, not completion of the requested full parity audit. The 649 label blocks are indexed for further review; they have not each been certified equivalent.
+The source index contains 196 backend operation definitions, 158 feature entries, and 649 labels in the top-level legacy batch file. The changes provide native implementations for 45 operation IDs. The other 151 are explicitly unavailable. This is partial remediation, not completion of the requested full parity audit. The 649 label blocks are indexed for further review; they have not each been certified equivalent. The individual count of legitimate original user actions remains unestablished.
 
-All 136 files under `legacy-original` remain unchanged. The supplied project `sources/` directory was not edited. No changes were pushed or merged.
+All 136 files under `legacy-original` remain unchanged. The supplied project `sources/` directory was not edited. The preservation commit `9f08fb8c1d90e2d30bb9060be6fca259191fa589` was pushed to `audit/native-behavior-hardening`. No merge was performed. Subsequent Phase A changes are detailed in [repair parity evidence](audit/phase-a-repair-parity.md).
 
 ## Evidence and behavior changes
 
@@ -57,7 +57,7 @@ A release still needs a current WebView2 host, tested session/process lifetime a
 
 - TypeScript check: passed after adding the service and restore-point providers.
 - React/server build: succeeded; Vite warns about the large existing JavaScript bundle.
-- Native/security tests: nine passing regression tests, with mocked state-changing commands. Three Windows provider tests passed separately: real read-only proxy and service queries, plus a restore-point script test using mocked Windows cmdlets.
+- Native/security and provider tests have been expanded for update service recovery, retained cache backups, network DHCP recovery and real printer inventory. See `audit/phase-a-tests.txt` for the latest run. Mutations use fixture cmdlets and temporary directories, not Windows repair targets.
 - Real Windows runner checks: read-only WinHTTP proxy and service inventory queries passed. No repair, network reset, disk repair, service change or reboot ran on this PC.
 - At the earlier 27-operation checkpoint, existing phase 8.4 and 8.5 suites were run with native execution disabled: each reported 7/18 passing, with 11 failures. Their passes read seeded legacy providers, and their failures include unfinished operations and the removed authentication assumptions. The old runner also emitted a Windows libuv teardown assertion; its log is preserved in `docs/audit/legacy-test-results.txt`. These suites still depend on simulated data and old authentication. They are not Windows functional certification; outstanding failures must not be patched by reintroducing mock successes.
 - Full Defender scan, signing, installer execution, target Windows repair tests and all-feature equivalence: not performed / blocked.

@@ -68,12 +68,12 @@ Original IMPLEMENTED_WORKING labels are not trusted. A declared operation mappin
 | printer.fix_0x0000011b | Printer_Analyzer_Pro.cs / RpcAuthnLevelPrivacyEnabled remediation | printer.fix_0x0000011b | MISSING_BEHAVIOR |
 | printer.fix_0x00000709 | Printer_Analyzer_Pro.cs / PointAndPrint default printer pointer fix | printer.fix_0x00000709 | MISSING_BEHAVIOR |
 | printer.subsystem.cleanup | Printer_Analyzer_Pro.cs / SubsystemCleanup without driver deletion | printer.subsystem.cleanup | MISSING_BEHAVIOR |
-| printer.inventory.get | Printer_Analyzer_Pro.cs / Get-Printer / WMI Win32_Printer | printer.inventory.get | MISSING_BEHAVIOR |
+| printer.inventory.get | Printer_Analyzer_Pro.cs / Get-Printer / WMI Win32_Printer | printer.inventory.get | PARTIAL_EQUIVALENT |
 | repair.sfc.scanfile | Toolkit.bat / sfc /scanfile | repair.sfc.scanfile | PARTIAL_EQUIVALENT |
 | repair.dism.source_wim | Toolkit.bat / DISM /RestoreHealth /Source:WIM /LimitAccess | repair.dism.source_wim | PARTIAL_EQUIVALENT |
 | repair.sfc_dism.full | OneClickSuperRepair.ps1 / OneClickSuperRepair.ps1 -FullPipeline | repair.sfc_dism.full | PARTIAL_EQUIVALENT |
-| repair.cbs_log.view | Toolkit.bat / type %windir%\Logs\CBS\CBS.log | repair.cbs_log.view | MISSING_BEHAVIOR |
-| repair.wu.reset_services | Toolkit.bat / net stop wuauserv & bits & cryptsvc | repair.wu.reset_services | MISSING_BEHAVIOR |
+| repair.cbs_log.view | Toolkit.bat / type %windir%\Logs\CBS\CBS.log | repair.cbs_log.view | PARTIAL_EQUIVALENT |
+| repair.wu.reset_services | Toolkit.bat / net stop wuauserv & bits & cryptsvc | repair.wu.reset_services | PARTIAL_EQUIVALENT |
 | repair.wu.diagnostics | OneClickSuperRepair.ps1 / Get-WUDiagnostics | repair.wu.diagnostics | MISSING_BEHAVIOR |
 | repair.explorer.restart | Toolkit.bat / taskkill /f /im explorer.exe & start explorer.exe | repair.explorer.restart | MISSING_BEHAVIOR |
 | repair.startmenu.troubleshoot | OneClickSuperRepair.ps1 / Repair-StartMenuExperience | repair.startmenu.troubleshoot | MISSING_BEHAVIOR |
@@ -87,7 +87,7 @@ Original IMPLEMENTED_WORKING labels are not trusted. A declared operation mappin
 | network.proxy.reset | Toolkit.bat / netsh winhttp reset proxy | network.proxy.reset | PARTIAL_EQUIVALENT |
 | network.connectivity.test | Toolkit.bat / WiFiDiagnostics.cmd | network.connectivity.test | MISSING_BEHAVIOR |
 | network.netstat.sockets | Toolkit.bat / netstat -ano / Get-NetTCPConnection | network.netstat.sockets | PARTIAL_EQUIVALENT |
-| network.workflow.common_repair | OneClickSuperRepair.ps1 / OneClickSuperRepair.ps1 -NetworkSuite | network.workflow.common_repair | MISSING_BEHAVIOR |
+| network.workflow.common_repair | OneClickSuperRepair.ps1 / OneClickSuperRepair.ps1 -NetworkSuite | network.workflow.common_repair | PARTIAL_EQUIVALENT |
 | remote.rdp.enable_disable | Toolkit.bat / rdp_toggle / Terminal Server | remote.rdp.settings | MISSING_BEHAVIOR |
 | remote.rdp.firewall_rule | Toolkit.bat / netsh advfirewall firewall set rule group="remote desktop" new enable=Yes | remote.firewall.rdp_audit | MISSING_BEHAVIOR |
 | boot.uefi.reboot_fw | Toolkit.bat / shutdown /r /fw /t 0 | boot.advanced.startup | MISSING_BEHAVIOR |

@@ -6,7 +6,7 @@ import { OPERATION_DEFINITIONS } from './registry.js';
 export interface Command { executable: string; args: string[]; reboot?: boolean; json?: boolean }
 const command = (executable: string, ...args: string[]): Command => ({ executable, args });
 const dism = (action: string) => command('Dism.exe', '/Online', '/Cleanup-Image', action);
-const script = (file: 'services.ps1' | 'restore-points.ps1', ...args: string[]): Command => ({
+const script = (file: 'services.ps1' | 'restore-points.ps1' | 'update-services.ps1' | 'update-cache.ps1' | 'cbs-log.ps1' | 'printers.ps1', ...args: string[]): Command => ({
   executable: 'WindowsPowerShell\\v1.0\\powershell.exe',
   args: ['-NoLogo', '-NoProfile', '-NonInteractive', '-File', path.resolve('server/operations/windows', file), ...args], json: true
 });
@@ -22,6 +22,10 @@ const plans: Record<string, Command[]> = {
   'repair.dism.clean_store': [dism('/StartComponentCleanup')],
   // Toolkit.bat:sfc_dism option 10: preserve SFC then DISM; no added cleanup.
   'repair.sfc_dism.full': [command('sfc.exe', '/scannow'), dism('/RestoreHealth')],
+  'repair.cbs_log.view': [script('cbs-log.ps1')],
+  'repair.wu.reset_services': [script('update-services.ps1')],
+  'repair.wu.softwaredist_reset': [script('update-cache.ps1', '-Action', 'SoftwareDistribution')],
+  'repair.wu.catroot2_reset': [script('update-cache.ps1', '-Action', 'Catroot2')],
   'network.dns.flush': [command('ipconfig.exe', '/flushdns')],
   'network.ip.release': [command('ipconfig.exe', '/release')],
   'network.ip.renew': [command('ipconfig.exe', '/renew')],
@@ -30,6 +34,14 @@ const plans: Record<string, Command[]> = {
   'network.proxy.status': [command('netsh.exe', 'winhttp', 'show', 'proxy')],
   'network.proxy.reset': [command('netsh.exe', 'winhttp', 'reset', 'proxy')],
   'network.netstat.sockets': [command('netstat.exe', '-ano')],
+  // Toolkit.bat:net_advanced option 15. Do not add proxy or firewall changes.
+  'network.workflow.common_repair': [command('ipconfig.exe', '/release'), command('ipconfig.exe', '/flushdns'),
+    { ...command('netsh.exe', 'winsock', 'reset'), reboot: true },
+    { ...command('netsh.exe', 'int', 'ip', 'reset'), reboot: true }, command('ipconfig.exe', '/renew')],
+  'printer.inventory.get': [script('printers.ps1')],
+  'printer.spooler.start': [script('services.ps1', '-Action', 'Start', '-ServiceName', 'Spooler')],
+  'printer.spooler.stop': [script('services.ps1', '-Action', 'Stop', '-ServiceName', 'Spooler')],
+  'printer.spooler.restart': [script('services.ps1', '-Action', 'Restart', '-ServiceName', 'Spooler')],
   'driver.pnputil.enum': [command('pnputil.exe', '/enum-drivers')],
   'sys.process.list': [command('tasklist.exe')],
   'sys.tasks.list': [command('schtasks.exe', '/query', '/fo', 'LIST', '/v')],
@@ -142,6 +154,7 @@ export async function executeNative(id: string, params: Record<string, unknown>,
   const results: Array<{ exitCode: number; output: string }> = [];
   let requiresRestart = false;
   let data: Record<string, unknown> = {};
+  try {
   for (const [index, cmd] of plan.entries()) {
     progress(Math.round(index / plan.length * 100), `Running ${cmd.executable}`, `${cmd.executable} ${cmd.args.join(' ')}`);
     const result = await runner(cmd);
@@ -155,6 +168,21 @@ export async function executeNative(id: string, params: Record<string, unknown>,
       data = parsed;
     }
     requiresRestart ||= !!cmd.reboot || result.exitCode === 3010;
+  }
+  } catch (error) {
+    // Lease release can succeed before a later reset fails. Attempt renewal even then,
+    // but retain the original failed status and report recovery separately.
+    if (id === 'network.workflow.common_repair' && results.length < plan.length) {
+      try {
+        progress(90, 'Attempting DHCP recovery', 'ipconfig.exe /renew (recovery after failed repair)');
+        const recovery = await runner(command('ipconfig.exe', '/renew'));
+        progress(90, `DHCP recovery exited: ${recovery.exitCode}`, recovery.output);
+        if (recovery.exitCode !== 0) progress(90, 'DHCP recovery failed', `Recovery exit code ${recovery.exitCode}; connectivity may remain interrupted.`);
+      } catch (recoveryError) {
+        progress(90, 'DHCP recovery failed', recoveryError instanceof Error ? recoveryError.message : String(recoveryError));
+      }
+    }
+    throw error;
   }
   return { ...data, commands: results, requiresRestart, message: 'Commands completed. Review their output for findings.' };
 }

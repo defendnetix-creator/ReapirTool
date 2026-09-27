@@ -1028,11 +1028,11 @@ export const DiagnosticsView: React.FC<DiagnosticsViewProps> = ({
                   </span>
                 </div>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 font-bold">
-                  {printerData?.spoolerStatus || 'RUNNING'}
+                  {printerData?.spoolerStatus ?? 'UNAVAILABLE'}
                 </span>
               </div>
               <div className="text-xs font-mono text-slate-400">
-                Print Spooler service PID 1840 running normally under LocalSystem.
+                Service status reported by Windows. Process details have not been queried.
               </div>
               <div className="pt-2">
                 <button
@@ -1056,11 +1056,11 @@ export const DiagnosticsView: React.FC<DiagnosticsViewProps> = ({
                   </span>
                 </div>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-400 border border-cyan-500/30 font-bold">
-                  {printerData?.totalQueuedJobs || 0} JOBS
+                  {printerData?.totalQueuedJobs ?? 'UNKNOWN'} JOBS
                 </span>
               </div>
               <div className="text-xs font-mono text-slate-400">
-                Spooler buffer at C:\Windows\System32\spool\PRINTERS is clear.
+                Queue counts do not verify spool-file health or printer connectivity.
               </div>
               <div className="pt-2">
                 <button
@@ -1085,7 +1085,7 @@ export const DiagnosticsView: React.FC<DiagnosticsViewProps> = ({
                 </div>
               </div>
               <div className="text-xs font-mono font-bold text-white truncate">
-                {printerData?.defaultPrinter || 'HP LaserJet Pro M404'}
+                {printerData ? (printerData.defaultPrinter ?? 'None configured') : 'Unavailable'}
               </div>
               <div className="pt-2">
                 <button
@@ -1106,7 +1106,7 @@ export const DiagnosticsView: React.FC<DiagnosticsViewProps> = ({
                 Installed Printer Fleet & Diagnostics
               </h3>
               <span className="text-xs font-mono text-slate-400">
-                Total: {printerData?.printers.length || 0} Devices
+                Total: {printerData?.printers.length ?? 'Unknown'} Devices
               </span>
             </div>
 
@@ -1141,7 +1141,7 @@ export const DiagnosticsView: React.FC<DiagnosticsViewProps> = ({
 
                   <div className="space-y-1 text-[11px] text-slate-400 border-t border-white/[0.04] pt-2">
                     <div>Port: <span className="text-slate-200">{p.port}</span></div>
-                    <div>Queue Jobs: <span className="text-cyan-400 font-bold">{p.queueCount}</span></div>
+                    <div>Queue Jobs: <span className="text-cyan-400 font-bold">{p.queueCount ?? 'Unknown'}</span></div>
                     <div>Shared: <span className="text-slate-200">{p.isShared ? `Yes (${p.shareName})` : 'No'}</span></div>
                   </div>
 
