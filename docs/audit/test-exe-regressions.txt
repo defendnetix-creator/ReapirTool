@@ -1,0 +1,26 @@
+✔ legacy SFC/DISM order and ordinary cleanup are preserved (1.2559ms)
+✔ update repair and CBS viewing accept no caller-selected scripts or paths (0.3084ms)
+✔ source repair requires explicit image index, preserves spaces, blocks option injection (0.355ms)
+✔ real output/exit codes determine result; failures stop later commands (0.4496ms)
+✔ unimplemented repair never creates a successful simulated job (0.1872ms)
+✔ network targets cannot introduce options or commands; disk inspection stays read-only (4.1465ms)
+✔ spooler restart cannot clear print queues or target another service (0.1328ms)
+✔ network repair attempts DHCP recovery on failure and never reports recovery as repair success (0.2007ms)
+✔ service control protects security/core services and validates startup parameters (0.4223ms)
+✔ restore point descriptions are passed as data; creation is not assumed from process success (0.372ms)
+✔ loopback rejects Host spoofing, cross-origin access and remote sockets (0.2327ms)
+✔ API rejects old tokens, guards session bootstrap and blocks fake data (59.0723ms)
+✔ Windows runner invokes the real read-only WinHTTP proxy query (115.0639ms)
+✔ restore-point provider verifies a new checkpoint and rejects throttling or stale data (mocked cmdlets) (1086.279ms)
+✔ Windows service inventory returns actual service records without changing services (1265.2436ms)
+✔ Windows printer inventory exposes unknown values rather than guessed driver versions or health (3039.5422ms)
+✔ update reset preserves sequence, rejects unsafe preflight, and reports recovery failures (fixture only) (3241.8332ms)
+✔ update cache rename retains bytes and recovers services; links and missing directories are rejected (temporary fixtures) (5487.827ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14702.2341

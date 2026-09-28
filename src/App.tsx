@@ -30,6 +30,7 @@ import {
   ToastMessage
 } from './types';
 import { licenseClient } from './licensing/licenseClient';
+import { isTestBuild } from './buildFlags';
 import { LicenseClientState } from './licensing/types';
 import { hasEntitlement } from './licensing/entitlements';
 
@@ -252,7 +253,8 @@ export function App() {
         />
 
         <div role="status" className="px-4 py-2 text-xs text-amber-200 bg-amber-950/50 border-b border-amber-800">
-          Audit build — not release-ready. Dashboard values are demonstration data. Some repairs and inventories remain unavailable.
+          {isTestBuild ? 'LOCAL TEST BUILD — no purchase required. Enable implemented repairs using the administrator button above. ' : 'Audit build — not release-ready. '}
+          Dashboard values are demonstration data. Some repairs and inventories remain unavailable.
         </div>
         {/* View Router */}
         <main className="flex-1 overflow-y-auto bg-[#07090e]">

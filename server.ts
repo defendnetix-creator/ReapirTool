@@ -1,5 +1,5 @@
 import express from "express";
-import { localPort, loopbackSecurity } from "./server/operations/security.js";
+import { localPort, loopbackSecurity, setListeningPort } from "./server/operations/security.js";
 import path from "path";
 import { licensingRouter } from "./server/licensing/routes.js";
 import { updatesRouter } from "./server/updates/routes.js";
@@ -25,7 +25,8 @@ async function startServer() {
     res.json({
       status: "ok",
       app: "Akshigo PC Toolkit Pro",
-      version: "8.0.0-rc.1",
+      version: process.env.AKSHIGO_DESKTOP_HOST === '1' ? '8.0.0-test.1' : '8.0.0-rc.1',
+      instance: process.env.AKSHIGO_HOST_INSTANCE || null,
       service: "Licensing Authority, Razorpay Payment Gateway & Release Update Bridge",
       paymentMode: "TEST",
       timestamp: new Date().toISOString()
@@ -33,6 +34,9 @@ async function startServer() {
   });
 
   // Licensing Authority API endpoints
+  if (process.env.AKSHIGO_DESKTOP_HOST === '1') {
+    app.use(['/api/v1/licenses', '/api/v1/payments', '/api/v1/updates'], (_req, res) => res.status(503).json({ error: 'Purchases, license issuance and updates are disabled in this local test build.' }));
+  }
   app.use("/api/v1/licenses", licensingRouter);
 
   // Razorpay Payment Gateway & Fulfillment endpoints
@@ -60,9 +64,18 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "127.0.0.1", () => {
-    console.log(`Akshigo PC Toolkit Pro server running on http://127.0.0.1:${PORT}`);
+  const server = app.listen(PORT, "127.0.0.1", () => {
+    const address = server.address();
+    if (!address || typeof address === 'string') throw new Error('No listening address.');
+    setListeningPort(address.port);
+    console.log(`Akshigo PC Toolkit Pro server running on http://127.0.0.1:${address.port}`);
+    if (process.env.AKSHIGO_DESKTOP_HOST === '1') console.log('AKSHIGO_READY ' + JSON.stringify({ port: address.port, instance: process.env.AKSHIGO_HOST_INSTANCE }));
   });
+  if (process.env.AKSHIGO_DESKTOP_HOST === '1') {
+    // The host owns this stdin pipe. Never leave its backend listening after host loss.
+    process.stdin.resume();
+    process.stdin.on('end', () => server.close(() => process.exit(0)));
+  }
 }
 
 startServer();

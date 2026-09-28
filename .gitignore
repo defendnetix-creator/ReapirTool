@@ -59,3 +59,6 @@ Thumbs.db
 .npm-cache/
 publish/
 release/
+.tools/
+host/bin/
+host/obj/

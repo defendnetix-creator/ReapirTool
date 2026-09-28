@@ -1,0 +1,53 @@
+{
+  "version": "8.0.0-test.1",
+  "architecture": "Windows x64",
+  "type": "Portable test build, not release candidate",
+  "exe": {
+    "bytes": 117252547,
+    "signed": false,
+    "name": "Akshigo-PC-Toolkit-Pro.exe",
+    "peHeaderVerified": true,
+    "sha256": "5335DEA0A439F99FA9F1F760C43E4B9E703AC815FCA25D1B8A2022F24810A1A3"
+  },
+  "zip": {
+    "bytes": 84040721,
+    "name": "Akshigo-PC-Toolkit-Pro-8.0.0-test.1-win-x64.zip",
+    "sha256": "9E0FF2713D7CD979E8F8AF7D4A461BECBDF493E9A87F389CFA2CA52044E77000"
+  },
+  "verifiedPackageFiles": 95,
+  "desktopSmoke": {
+    "status": "PASS",
+    "time": "2026-09-28T15:20:26.5103704+05:30",
+    "port": 57068,
+    "nativeOperations": false
+  },
+  "regressionTests": {
+    "failed": 0,
+    "passed": 18,
+    "note": "Read-only Windows queries and mutation fixtures only."
+  },
+  "defender": {
+    "exitCode": 0,
+    "customScan": "Completed; reported no threats",
+    "exclusionInspection": "Access denied; no exclusions or protection settings changed",
+    "scope": "release folder including EXE, runtimes, scripts and ZIP",
+    "evidence": "test-exe-defender.txt"
+  },
+  "nativeOperations": 45,
+  "unavailableOperations": 151,
+  "nativeDefault": "Disabled",
+  "enablement": "Explicit in-app confirmation plus Windows UAC",
+  "destructiveRepairValidation": "NOT_TESTED",
+  "cleanMachineValidation": "NOT_TESTED",
+  "installer": "NOT_CREATED",
+  "sdk": "10.0.401",
+  "node": "24.16.0",
+  "webView2SDK": "1.0.4191.47",
+  "limitations": [
+    "Unsigned test application",
+    "Dashboard contains labelled demonstration data",
+    "Super Repair unavailable",
+    "Manual reopen after backend crash",
+    "WindowsBase reference conflict warning from unused WebView2 WPF reference; WinForms runtime smoke passed"
+  ]
+}

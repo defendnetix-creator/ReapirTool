@@ -1,11 +1,22 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import fs from 'node:fs';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    define: { __AKSHIGO_TEST_BUILD__: JSON.stringify(process.env.AKSHIGO_TEST_BUILD === '1') },
+    plugins: [react(), tailwindcss(), {
+      name: 'test-build-license-inventory',
+      generateBundle(_options, bundle) {
+        if (process.env.AKSHIGO_TEST_BUILD !== '1') return;
+        const inputs = Object.fromEntries(Object.values(bundle).flatMap(item => item.type === 'chunk' ? Object.keys(item.modules) : [])
+          .map(file => [path.relative(process.cwd(), file).replaceAll('\\', '/'), {}]));
+        fs.mkdirSync('build', { recursive: true });
+        fs.writeFileSync('build/frontend-meta.json', JSON.stringify({ inputs }));
+      }
+    }],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
